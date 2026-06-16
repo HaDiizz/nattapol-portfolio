@@ -9,8 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "deploy": "astro build && gh-pages -d dist -t"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/sitemap": "latest",
@@ -23,7 +22,6 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.1",
-    "gh-pages": "^6.3.0",
     "tailwindcss": "^4.3.1"
   }
 }
