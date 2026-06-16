@@ -22,3 +22,14 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Agent & Temp files
+.agents/
+skills-lock.json
+tmp.*
+*.log
+LOGO.md
+CLAUDE.md
+PROJECTS.md
+public/docs/CV_Nattapol_Singhad.md
+parse_logos*

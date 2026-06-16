@@ -12,6 +12,16 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.4.7"
+    "astro": "^6.4.7",
+    "@astrojs/tailwind": "latest",
+    "@astrojs/sitemap": "latest",
+    "gsap": "latest",
+    "@fontsource/geist": "latest",
+    "@fontsource/inter": "latest",
+    "lucide-astro": "latest"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.1",
+    "tailwindcss": "^4.3.1"
   }
 }

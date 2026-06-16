@@ -1,0 +1,68 @@
+---
+import type { sideProjects } from '../../data/projects';
+import { ExternalLink, Github } from 'lucide-astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+  items: typeof sideProjects;
+}
+
+const { items } = Astro.props;
+---
+
+<section id="projects" class="py-20 border-t border-[var(--border)]">
+  <div class="mb-12">
+    <h2 class="section-heading text-3xl font-bold">Side Projects</h2>
+  </div>
+
+  <div class="flex flex-row flex-wrap justify-center gap-8">
+    {items.map((project) => (
+      <div class="project-card w-full sm:w-[calc(50%-1rem)] flex flex-col rounded-2xl border border-[var(--border)] bg-[var(--bg-surface)] overflow-hidden transition-[transform,box-shadow,border-color,background-color] duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--accent-dim)]">
+        <div class="aspect-video bg-[var(--border)] relative overflow-hidden group">
+          {project.image ? (
+            <>
+              <Image src={project.image.light} alt={project.name} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 dark:hidden" loading="lazy" />
+              <Image src={project.image.dark} alt={project.name} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 hidden dark:block" loading="lazy" />
+            </>
+          ) : (
+            <div class="w-full h-full flex items-center justify-center text-[var(--text-muted)] bg-[var(--tag-bg)]">
+              Preview not available
+            </div>
+          )}
+          {project.status === 'private' && (
+            <div class="absolute top-3 right-3 bg-[var(--bg)]/90 backdrop-blur-sm px-2.5 py-1 rounded-md text-xs font-semibold text-[var(--text-muted)] border border-[var(--border)]">
+              Private
+            </div>
+          )}
+        </div>
+        
+        <div class="p-6 flex flex-col flex-grow">
+          <h3 class="text-xl font-bold mb-1">{project.name}</h3>
+          <p class="text-sm text-[var(--accent)] font-medium mb-3">{project.tagline}</p>
+          <p class="text-sm text-[var(--text-muted)] mb-6 flex-grow">{project.description}</p>
+          
+          <div class="flex flex-wrap gap-2 mb-6">
+            {project.tags.map(tag => (
+              <span class="text-xs px-2.5 py-1 rounded-md bg-[var(--tag-bg)] text-[var(--tag-text)] font-medium">{tag}</span>
+            ))}
+          </div>
+          
+          {(project.url || project.github) && (
+            <div class="flex items-center gap-4 mt-auto pt-4 border-t border-[var(--border)]/50">
+              {project.url ? (
+                <a href={project.url} target="_blank" rel="noopener noreferrer" class="text-sm font-medium hover:text-[var(--accent)] transition-colors flex items-center gap-1.5">
+                  <ExternalLink class="w-4 h-4" /> Live Site
+                </a>
+              ) : null}
+              {project.github ? (
+                <a href={project.github} target="_blank" rel="noopener noreferrer" class="text-sm font-medium hover:text-[var(--accent)] transition-colors flex items-center gap-1.5">
+                  <Github class="w-4 h-4" /> GitHub
+                </a>
+              ) : null}
+            </div>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

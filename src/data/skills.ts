@@ -1,0 +1,21 @@
+export const skills = {
+  "Programming Languages": [
+    "TypeScript", "JavaScript", "Python", "Go", "HTML", "CSS", "C",
+  ],
+  "Frameworks & Libraries": [
+    "React", "Next.js", "Vue", "Nuxt", "Astro", "Flask",
+    "Express", "Hono", "FastAPI", "Angular",
+  ],
+  "Databases": [
+    "PostgreSQL", "MySQL", "MongoDB",
+  ],
+  "Cloud & DevOps": [
+    "Docker", "GitLab CI/CD", "DigitalOcean", "AWS", "Cloudflare", "Vercel", "Render",
+  ],
+  "Testing": [
+    "Jest", "Playwright", "Robot Framework",
+  ],
+  "Tools": [
+    "Figma", "Power BI", "GraphQL", "gRPC",
+  ],
+} as const;

@@ -1,0 +1,49 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import profileImg from '../assets/profile.jpg';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Nattapol Singhad — Software Engineer",
+  description = "Minimal, clean personal portfolio for a software engineer based in Hat Yai, Thailand."
+} = Astro.props;
+
+const ogImageURL = new URL(profileImg.src, Astro.site || Astro.url);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>{title}</title>
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:type" content="website" />
+
+    <script is:inline>
+      const saved = localStorage.getItem('theme') ?? 
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', saved);
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Navbar />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,64 @@
+---
+import ThemeToggle from '../ui/ThemeToggle.astro';
+import { Menu, X } from 'lucide-astro';
+---
+
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-[var(--bg)]/80 border-b border-[var(--border)] transition-colors nav-header">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href={import.meta.env.BASE_URL} class="text-xl font-bold tracking-tight text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors">
+      nattapol-sh
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8 nav-links">
+      <a href="#about" class="text-sm font-medium hover:text-[var(--accent)] transition-colors">About</a>
+      <a href="#experience" class="text-sm font-medium hover:text-[var(--accent)] transition-colors">Experience</a>
+      <a href="#projects" class="text-sm font-medium hover:text-[var(--accent)] transition-colors">Projects</a>
+      <a href="#contact" class="text-sm font-medium hover:text-[var(--accent)] transition-colors">Contact</a>
+      <ThemeToggle />
+    </nav>
+
+    <div class="flex items-center gap-4 md:hidden">
+      <ThemeToggle />
+      <button id="mobile-menu-btn" class="p-2 -mr-2 text-[var(--text)] hover:text-[var(--accent)] transition-colors" aria-label="Toggle menu">
+        <Menu class="w-6 h-6 menu-icon" />
+        <X class="w-6 h-6 close-icon hidden" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="fixed inset-x-0 top-16 bg-[var(--bg)] border-b border-[var(--border)] p-6 hidden flex-col gap-6 shadow-xl">
+    <a href="#about" class="mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors">About</a>
+    <a href="#experience" class="mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors">Experience</a>
+    <a href="#projects" class="mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors">Projects</a>
+    <a href="#contact" class="mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors">Contact</a>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const menuIcon = btn?.querySelector('.menu-icon');
+  const closeIcon = btn?.querySelector('.close-icon');
+  const links = document.querySelectorAll('.mobile-link');
+
+  function toggleMenu() {
+    const isHidden = menu?.classList.contains('hidden');
+    if (isHidden) {
+      menu?.classList.remove('hidden');
+      menu?.classList.add('flex');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+    } else {
+      menu?.classList.add('hidden');
+      menu?.classList.remove('flex');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    }
+  }
+
+  btn?.addEventListener('click', toggleMenu);
+  links.forEach(link => {
+    link.addEventListener('click', toggleMenu);
+  });
+</script>

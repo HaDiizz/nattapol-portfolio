@@ -1,11 +1,28 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/sections/Hero.astro";
+import About from "../components/sections/About.astro";
+import Experience from "../components/sections/Experience.astro";
+import Projects from "../components/sections/Projects.astro";
+import Skills from "../components/sections/Skills.astro";
+import Contact from "../components/sections/Contact.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { experience } from "../data/experience";
+import { sideProjects } from "../data/projects";
+import { skills } from "../data/skills";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="Nattapol Singhad — Software Engineer">
+  <div class="max-w-5xl mx-auto px-6">
+    <Hero />
+    <About />
+    <Experience items={experience} />
+    <Projects items={sideProjects} />
+    <Skills groups={skills} />
+    <Contact />
+  </div>
+</BaseLayout>
+
+<script>
+  import "../scripts/animations";
+</script>
