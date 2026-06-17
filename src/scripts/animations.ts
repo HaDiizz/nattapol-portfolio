@@ -15,7 +15,10 @@ function initAnimations() {
       isMobile: '(max-width: 767px)',
     },
     (context) => {
-      const { reduceMotion, isDesktop } = context.conditions as Record<string, boolean>;
+      const { reduceMotion, isDesktop } = context.conditions as Record<
+        string,
+        boolean
+      >;
 
       if (reduceMotion) {
         return; // skip animations
@@ -205,7 +208,11 @@ function initAnimations() {
               if (smoother) {
                 smoother.scrollTo(targetElement, true, 'top top');
               } else {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
+                gsap.to(window, {
+                  scrollTo: targetElement,
+                  duration: 1,
+                  ease: 'power3.out',
+                });
               }
             }
           });
