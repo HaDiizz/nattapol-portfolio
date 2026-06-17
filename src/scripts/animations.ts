@@ -15,7 +15,7 @@ function initAnimations() {
       isMobile: '(max-width: 767px)',
     },
     (context) => {
-      const { reduceMotion, isDesktop } = context.conditions as any;
+      const { reduceMotion, isDesktop } = context.conditions as Record<string, boolean>;
 
       if (reduceMotion) {
         return; // skip animations

@@ -196,8 +196,6 @@ import { Timer } from 'lucide-astro';
     // 2. Real-time Counter Logic
     const birthDate = new Date('2001-06-29T04:00:00+07:00');
 
-    let reqId: number;
-
     function updateUptime() {
       // Dynamic lookup to ensure we stop the loop if the component unmounts
       const elYears = document.getElementById('uptime-years');
@@ -255,7 +253,7 @@ import { Timer } from 'lucide-astro';
       if (elSeconds) elSeconds.innerText = seconds.toString().padStart(2, '0');
       if (elMs) elMs.innerText = milliseconds.toString().padStart(3, '0');
 
-      reqId = requestAnimationFrame(updateUptime);
+      requestAnimationFrame(updateUptime);
     }
 
     if (document.getElementById('uptime-years')) {

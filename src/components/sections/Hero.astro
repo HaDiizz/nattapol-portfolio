@@ -1,5 +1,5 @@
 ---
-import { ArrowDownRight, Github, Mail, FileText, MapPin } from 'lucide-astro';
+import { ArrowDownRight, FileText, MapPin } from 'lucide-astro';
 import { Image, getImage } from 'astro:assets';
 import profileRealImg from '../../assets/profile-real.jpg';
 import profileAvatarImg from '../../assets/profile-avatar.png';
@@ -174,7 +174,7 @@ const expText = expYears > 0 ? `${expYears}y exp` : '<1y exp';
   gsap.registerPlugin(SplitText);
 
   document.addEventListener('astro:page-load', () => {
-    let mm = gsap.matchMedia();
+    const mm = gsap.matchMedia();
 
     mm.add(
       {
