@@ -4,10 +4,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://nattapol.dev",
-  output: "static",
+  site: 'https://nattapol-portfolio.pages.dev',
+  output: 'static',
   integrations: [sitemap()],
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });

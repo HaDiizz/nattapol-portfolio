@@ -1,15 +1,16 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/sections/Hero.astro";
-import About from "../components/sections/About.astro";
-import Experience from "../components/sections/Experience.astro";
-import Projects from "../components/sections/Projects.astro";
-import Skills from "../components/sections/Skills.astro";
-import Contact from "../components/sections/Contact.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import About from '../components/sections/About.astro';
+import Experience from '../components/sections/Experience.astro';
+import Projects from '../components/sections/Projects.astro';
+import Skills from '../components/sections/Skills.astro';
+import Uptime from '../components/sections/Uptime.astro';
+import Contact from '../components/sections/Contact.astro';
 
-import { experience } from "../data/experience";
-import { sideProjects } from "../data/projects";
-import { skills } from "../data/skills";
+import { experience } from '../data/experience';
+import { sideProjects } from '../data/projects';
+import { skills } from '../data/skills';
 ---
 
 <BaseLayout title="Nattapol Singhad — Software Engineer">
@@ -19,10 +20,11 @@ import { skills } from "../data/skills";
     <Experience items={experience} />
     <Projects items={sideProjects} />
     <Skills groups={skills} />
+    <Uptime />
     <Contact />
   </div>
 </BaseLayout>
 
 <script>
-  import "../scripts/animations";
+  import '../scripts/animations';
 </script>

@@ -3,23 +3,48 @@ import ThemeToggle from '../ui/ThemeToggle.astro';
 import { Menu, X } from 'lucide-astro';
 ---
 
-<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-[var(--bg)]/80 border-b border-[var(--border)] transition-colors nav-header">
+<header
+  class="fixed top-0 w-full z-50 backdrop-blur-md bg-[var(--bg)]/80 border-b border-[var(--border)] transition-colors nav-header"
+>
   <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="text-xl font-bold tracking-tight text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors">
+    <a
+      href="/"
+      class="text-xl font-bold tracking-tight text-[var(--accent)] hover:opacity-80 dark:text-white dark:[text-shadow:0_0_20px_rgba(255,255,255,0.6)] transition-all duration-300"
+    >
       nattapol-sh
     </a>
 
     <nav class="hidden md:flex items-center gap-8 nav-links">
-      <a href="#about" class="text-sm font-medium hover:text-[var(--accent)] transition-colors">About</a>
-      <a href="#experience" class="text-sm font-medium hover:text-[var(--accent)] transition-colors">Experience</a>
-      <a href="#projects" class="text-sm font-medium hover:text-[var(--accent)] transition-colors">Projects</a>
-      <a href="#contact" class="text-sm font-medium hover:text-[var(--accent)] transition-colors">Contact</a>
+      <a
+        href="#about"
+        class="text-sm font-medium hover:text-[var(--accent)] transition-colors"
+        >About</a
+      >
+      <a
+        href="#experience"
+        class="text-sm font-medium hover:text-[var(--accent)] transition-colors"
+        >Experience</a
+      >
+      <a
+        href="#projects"
+        class="text-sm font-medium hover:text-[var(--accent)] transition-colors"
+        >Projects</a
+      >
+      <a
+        href="#contact"
+        class="text-sm font-medium hover:text-[var(--accent)] transition-colors"
+        >Contact</a
+      >
       <ThemeToggle />
     </nav>
 
     <div class="flex items-center gap-4 md:hidden">
       <ThemeToggle />
-      <button id="mobile-menu-btn" class="p-2 -mr-2 text-[var(--text)] hover:text-[var(--accent)] transition-colors" aria-label="Toggle menu">
+      <button
+        id="mobile-menu-btn"
+        class="p-2 -mr-2 text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+        aria-label="Toggle menu"
+      >
         <Menu class="w-6 h-6 menu-icon" />
         <X class="w-6 h-6 close-icon hidden" />
       </button>
@@ -27,38 +52,135 @@ import { Menu, X } from 'lucide-astro';
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="fixed inset-x-0 top-16 bg-[var(--bg)] border-b border-[var(--border)] p-6 hidden flex-col gap-6 shadow-xl">
-    <a href="#about" class="mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors">About</a>
-    <a href="#experience" class="mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors">Experience</a>
-    <a href="#projects" class="mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors">Projects</a>
-    <a href="#contact" class="mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors">Contact</a>
+  <div
+    id="mobile-menu"
+    class="fixed inset-x-0 top-16 bg-[var(--bg)] border-b border-[var(--border)] p-6 hidden flex-col gap-6 shadow-xl"
+  >
+    <a
+      href="#about"
+      class="mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors"
+      >About</a
+    >
+    <a
+      href="#experience"
+      class="mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors"
+      >Experience</a
+    >
+    <a
+      href="#projects"
+      class="mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors"
+      >Projects</a
+    >
+    <a
+      href="#contact"
+      class="mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors"
+      >Contact</a
+    >
   </div>
 </header>
 
 <script>
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  const menuIcon = btn?.querySelector('.menu-icon');
-  const closeIcon = btn?.querySelector('.close-icon');
-  const links = document.querySelectorAll('.mobile-link');
+  import { gsap } from 'gsap';
 
-  function toggleMenu() {
-    const isHidden = menu?.classList.contains('hidden');
-    if (isHidden) {
-      menu?.classList.remove('hidden');
-      menu?.classList.add('flex');
-      menuIcon?.classList.add('hidden');
-      closeIcon?.classList.remove('hidden');
-    } else {
-      menu?.classList.add('hidden');
-      menu?.classList.remove('flex');
-      menuIcon?.classList.remove('hidden');
-      closeIcon?.classList.add('hidden');
+  document.addEventListener('astro:page-load', () => {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const menuIcon = btn?.querySelector('.menu-icon');
+    const closeIcon = btn?.querySelector('.close-icon');
+    const links = document.querySelectorAll('.mobile-link');
+
+    let isOpen = false;
+    let isAnimating = false;
+
+    function toggleMenu() {
+      if (isAnimating || !menu) return;
+      isAnimating = true;
+      isOpen = !isOpen;
+
+      if (isOpen) {
+        menu.classList.remove('hidden');
+        menu.classList.add('flex');
+
+        gsap.fromTo(
+          menu,
+          { opacity: 0, y: -10 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.3,
+            ease: 'power2.out',
+            onComplete: () => (isAnimating = false),
+          }
+        );
+
+        gsap.fromTo(
+          '.mobile-link',
+          { opacity: 0, x: -10 },
+          {
+            opacity: 1,
+            x: 0,
+            stagger: 0.05,
+            duration: 0.3,
+            delay: 0.1,
+            ease: 'power2.out',
+          }
+        );
+
+        menuIcon?.classList.add('hidden');
+        closeIcon?.classList.remove('hidden');
+        gsap.fromTo(
+          closeIcon,
+          { scale: 0.5, opacity: 0, rotation: -90 },
+          {
+            scale: 1,
+            opacity: 1,
+            rotation: 0,
+            duration: 0.3,
+            ease: 'back.out(1.5)',
+          }
+        );
+      } else {
+        gsap.to(menu, {
+          opacity: 0,
+          y: -10,
+          duration: 0.2,
+          ease: 'power2.in',
+          onComplete: () => {
+            menu.classList.add('hidden');
+            menu.classList.remove('flex');
+            isAnimating = false;
+          },
+        });
+
+        closeIcon?.classList.add('hidden');
+        menuIcon?.classList.remove('hidden');
+        gsap.fromTo(
+          menuIcon,
+          { scale: 0.5, opacity: 0, rotation: 90 },
+          {
+            scale: 1,
+            opacity: 1,
+            rotation: 0,
+            duration: 0.3,
+            ease: 'back.out(1.5)',
+          }
+        );
+      }
     }
-  }
 
-  btn?.addEventListener('click', toggleMenu);
-  links.forEach(link => {
-    link.addEventListener('click', toggleMenu);
+    // Clean up old listeners to prevent duplicates on navigation
+    const newBtn = btn?.cloneNode(true);
+    btn?.parentNode?.replaceChild(newBtn!, btn);
+
+    document
+      .getElementById('mobile-menu-btn')
+      ?.addEventListener('click', toggleMenu);
+
+    document.querySelectorAll('.mobile-link').forEach((link) => {
+      // Create new clone to strip old listeners
+      const newLink = link.cloneNode(true);
+      link.parentNode?.replaceChild(newLink, link);
+      newLink.addEventListener('click', toggleMenu);
+    });
   });
 </script>

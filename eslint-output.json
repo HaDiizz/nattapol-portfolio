@@ -1,0 +1,381 @@
+[
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/.prettierrc.mjs",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/astro.config.mjs",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/eslint.config.mjs",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/components/Welcome.astro",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/components/layout/Footer.astro",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/components/layout/Navbar.astro",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'links' is assigned a value but never used.",
+        "line": 90,
+        "column": 11,
+        "messageId": "unusedVar",
+        "endLine": 90,
+        "endColumn": 16
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "---\nimport ThemeToggle from '../ui/ThemeToggle.astro';\nimport { Menu, X } from 'lucide-astro';\n---\n\n<header\n  class=\"fixed top-0 w-full z-50 backdrop-blur-md bg-[var(--bg)]/80 border-b border-[var(--border)] transition-colors nav-header\"\n>\n  <div class=\"max-w-5xl mx-auto px-6 h-16 flex items-center justify-between\">\n    <a\n      href=\"/\"\n      class=\"text-xl font-bold tracking-tight text-[var(--accent)] hover:opacity-80 dark:text-white dark:[text-shadow:0_0_20px_rgba(255,255,255,0.6)] transition-all duration-300\"\n    >\n      nattapol-sh\n    </a>\n\n    <nav class=\"hidden md:flex items-center gap-8 nav-links\">\n      <a\n        href=\"#about\"\n        class=\"text-sm font-medium hover:text-[var(--accent)] transition-colors\"\n        >About</a\n      >\n      <a\n        href=\"#experience\"\n        class=\"text-sm font-medium hover:text-[var(--accent)] transition-colors\"\n        >Experience</a\n      >\n      <a\n        href=\"#projects\"\n        class=\"text-sm font-medium hover:text-[var(--accent)] transition-colors\"\n        >Projects</a\n      >\n      <a\n        href=\"#contact\"\n        class=\"text-sm font-medium hover:text-[var(--accent)] transition-colors\"\n        >Contact</a\n      >\n      <ThemeToggle />\n    </nav>\n\n    <div class=\"flex items-center gap-4 md:hidden\">\n      <ThemeToggle />\n      <button\n        id=\"mobile-menu-btn\"\n        class=\"p-2 -mr-2 text-[var(--text)] hover:text-[var(--accent)] transition-colors\"\n        aria-label=\"Toggle menu\"\n      >\n        <Menu class=\"w-6 h-6 menu-icon\" />\n        <X class=\"w-6 h-6 close-icon hidden\" />\n      </button>\n    </div>\n  </div>\n\n  <!-- Mobile menu -->\n  <div\n    id=\"mobile-menu\"\n    class=\"fixed inset-x-0 top-16 bg-[var(--bg)] border-b border-[var(--border)] p-6 hidden flex-col gap-6 shadow-xl\"\n  >\n    <a\n      href=\"#about\"\n      class=\"mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors\"\n      >About</a\n    >\n    <a\n      href=\"#experience\"\n      class=\"mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors\"\n      >Experience</a\n    >\n    <a\n      href=\"#projects\"\n      class=\"mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors\"\n      >Projects</a\n    >\n    <a\n      href=\"#contact\"\n      class=\"mobile-link text-lg font-medium hover:text-[var(--accent)] transition-colors\"\n      >Contact</a\n    >\n  </div>\n</header>\n\n<script>\n  import { gsap } from 'gsap';\n\n  document.addEventListener('astro:page-load', () => {\n    const btn = document.getElementById('mobile-menu-btn');\n    const menu = document.getElementById('mobile-menu');\n    const menuIcon = btn?.querySelector('.menu-icon');\n    const closeIcon = btn?.querySelector('.close-icon');\n    const links = document.querySelectorAll('.mobile-link');\n\n    let isOpen = false;\n    let isAnimating = false;\n\n    function toggleMenu() {\n      if (isAnimating || !menu) return;\n      isAnimating = true;\n      isOpen = !isOpen;\n\n      if (isOpen) {\n        menu.classList.remove('hidden');\n        menu.classList.add('flex');\n\n        gsap.fromTo(\n          menu,\n          { opacity: 0, y: -10 },\n          {\n            opacity: 1,\n            y: 0,\n            duration: 0.3,\n            ease: 'power2.out',\n            onComplete: () => (isAnimating = false),\n          }\n        );\n\n        gsap.fromTo(\n          '.mobile-link',\n          { opacity: 0, x: -10 },\n          {\n            opacity: 1,\n            x: 0,\n            stagger: 0.05,\n            duration: 0.3,\n            delay: 0.1,\n            ease: 'power2.out',\n          }\n        );\n\n        menuIcon?.classList.add('hidden');\n        closeIcon?.classList.remove('hidden');\n        gsap.fromTo(\n          closeIcon,\n          { scale: 0.5, opacity: 0, rotation: -90 },\n          {\n            scale: 1,\n            opacity: 1,\n            rotation: 0,\n            duration: 0.3,\n            ease: 'back.out(1.5)',\n          }\n        );\n      } else {\n        gsap.to(menu, {\n          opacity: 0,\n          y: -10,\n          duration: 0.2,\n          ease: 'power2.in',\n          onComplete: () => {\n            menu.classList.add('hidden');\n            menu.classList.remove('flex');\n            isAnimating = false;\n          },\n        });\n\n        closeIcon?.classList.add('hidden');\n        menuIcon?.classList.remove('hidden');\n        gsap.fromTo(\n          menuIcon,\n          { scale: 0.5, opacity: 0, rotation: 90 },\n          {\n            scale: 1,\n            opacity: 1,\n            rotation: 0,\n            duration: 0.3,\n            ease: 'back.out(1.5)',\n          }\n        );\n      }\n    }\n\n    // Clean up old listeners to prevent duplicates on navigation\n    const newBtn = btn?.cloneNode(true);\n    btn?.parentNode?.replaceChild(newBtn!, btn);\n\n    document\n      .getElementById('mobile-menu-btn')\n      ?.addEventListener('click', toggleMenu);\n\n    document.querySelectorAll('.mobile-link').forEach((link) => {\n      // Create new clone to strip old listeners\n      const newLink = link.cloneNode(true);\n      link.parentNode?.replaceChild(newLink, link);\n      newLink.addEventListener('click', toggleMenu);\n    });\n  });\n</script>\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/components/sections/About.astro",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/components/sections/Contact.astro",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'Mail' is defined but never used.",
+        "line": 2,
+        "column": 32,
+        "messageId": "unusedVar",
+        "endLine": 2,
+        "endColumn": 36,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedVar",
+            "data": { "varName": "Mail" },
+            "fix": { "range": [33, 39], "text": "" },
+            "desc": "Remove unused variable \"Mail\"."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "---\nimport { ExternalLink, Github, Mail } from 'lucide-astro';\nimport { Image } from 'astro:assets';\nimport lineQrImg from '../../assets/line-qrcode.jpg';\n---\n\n<section\n  id=\"contact\"\n  class=\"py-32 border-t border-[var(--border)] flex flex-col items-center justify-center text-center\"\n>\n  <h2\n    class=\"section-heading text-4xl md:text-5xl font-bold tracking-tight mb-8\"\n  >\n    Let's build something together.\n  </h2>\n\n  <a\n    href=\"mailto:nattapol.dev@gmail.com\"\n    class=\"contact-item group flex items-center gap-2 text-xl md:text-2xl font-medium text-[var(--text)] hover:text-[var(--accent)] transition-colors mb-12\"\n  >\n    nattapol.dev@gmail.com\n    <ExternalLink\n      class=\"w-5 h-5 text-[var(--text-muted)] group-hover:text-[var(--accent)] transition-colors\"\n    />\n  </a>\n\n  <div\n    class=\"contact-item flex flex-wrap items-center justify-center gap-6 mb-16\"\n  >\n    <a\n      href=\"https://github.com/HaDiizz\"\n      target=\"_blank\"\n      rel=\"noopener noreferrer\"\n      class=\"contact-btn p-3 rounded-full border border-[var(--border)] text-[var(--text)] hover:bg-[var(--tag-bg)] hover:text-black dark:hover:text-white transition-colors relative group\"\n    >\n      <Github class=\"contact-icon w-6 h-6\" />\n      <span\n        class=\"absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity\"\n        >GitHub</span\n      >\n    </a>\n\n    <a\n      href=\"https://www.linkedin.com/in/nattapol-sh\"\n      target=\"_blank\"\n      rel=\"noopener noreferrer\"\n      class=\"contact-btn p-3 rounded-full border border-[var(--border)] text-[var(--text)] hover:bg-[var(--tag-bg)] hover:text-[#0A66C2] transition-colors relative group\"\n    >\n      <svg\n        class=\"contact-icon w-6 h-6\"\n        xmlns=\"http://www.w3.org/2000/svg\"\n        preserveAspectRatio=\"xMidYMid\"\n        viewBox=\"0 0 256 256\"\n        ><path\n          d=\"M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.907 39.907 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186l-.016 67.013ZM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009-.002-12.157 9.851-22.014 22.008-22.016 12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97v122.16ZM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453\"\n          fill=\"#0A66C2\"></path></svg\n      >\n      <span\n        class=\"absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity\"\n        >LinkedIn</span\n      >\n    </a>\n\n    <div class=\"relative group\">\n      <a\n        href=\"https://line.me/ti/p/vxDzI1FmEF\"\n        target=\"_blank\"\n        rel=\"noopener noreferrer\"\n        class=\"contact-btn p-3 rounded-full border border-[var(--border)] text-[var(--text)] hover:bg-[var(--tag-bg)] hover:text-[#00C300] transition-colors flex items-center justify-center group-hover:text-[#00C300]\"\n      >\n        <svg\n          class=\"contact-icon w-6 h-6\"\n          fill=\"#00C300\"\n          role=\"img\"\n          viewBox=\"0 0 24 24\"\n          xmlns=\"http://www.w3.org/2000/svg\"\n          ><title>LINE</title><path\n            d=\"M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314\"\n          ></path></svg\n        >\n        <span\n          class=\"absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity\"\n          >LINE</span\n        >\n      </a>\n      <!-- QR Code Tooltip -->\n      <div\n        class=\"absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-40 h-40 p-2 bg-white rounded-xl shadow-2xl border border-gray-200 opacity-0 pointer-events-none translate-y-4 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-all duration-300 z-50\"\n      >\n        <Image\n          src={lineQrImg}\n          alt=\"LINE QR Code\"\n          class=\"w-full h-full object-contain rounded-lg\"\n        />\n        <div\n          class=\"absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-b border-r border-gray-200 rotate-45\"\n        >\n        </div>\n      </div>\n    </div>\n\n    <a\n      href=\"mailto:nattapol.dev@gmail.com\"\n      class=\"contact-btn p-3 rounded-full border border-[var(--border)] text-[var(--text)] hover:bg-[var(--tag-bg)] hover:text-[#EA4335] transition-colors relative group\"\n    >\n      <svg\n        class=\"contact-icon w-6 h-6\"\n        xmlns=\"http://www.w3.org/2000/svg\"\n        viewBox=\"0 49.4 512 399.42\"\n      >\n        <g fill=\"none\" fill-rule=\"evenodd\">\n          <g fill-rule=\"nonzero\">\n            <path\n              fill=\"#4285f4\"\n              d=\"M34.91 448.818h81.454V251L0 163.727V413.91c0 19.287 15.622 34.91 34.91 34.91z\"\n            ></path>\n            <path\n              fill=\"#34a853\"\n              d=\"M395.636 448.818h81.455c19.287 0 34.909-15.622 34.909-34.909V163.727L395.636 251z\"\n            ></path>\n            <path\n              fill=\"#fbbc04\"\n              d=\"M395.636 99.727V251L512 163.727v-46.545c0-43.142-49.25-67.782-83.782-41.891z\"\n            ></path>\n          </g>\n          <path\n            fill=\"#ea4335\"\n            d=\"M116.364 251V99.727L256 204.455 395.636 99.727V251L256 355.727z\"\n          ></path>\n          <path\n            fill=\"#c5221f\"\n            fill-rule=\"nonzero\"\n            d=\"M0 117.182v46.545L116.364 251V99.727L83.782 75.291C49.25 49.4 0 74.04 0 117.18z\"\n          ></path>\n        </g>\n      </svg>\n      <span\n        class=\"absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity\"\n        >Gmail</span\n      >\n    </a>\n  </div>\n\n  <p class=\"text-[var(--text-muted)] font-medium\">\n    Hat Yai, Songkhla, Thailand &middot; UTC+7\n  </p>\n</section>\n\n<script>\n  import { gsap } from 'gsap';\n\n  document.addEventListener('astro:page-load', () => {\n    const contactBtns = document.querySelectorAll('.contact-btn');\n\n    contactBtns.forEach((btn) => {\n      const icon = btn.querySelector('.contact-icon');\n      if (!icon) return;\n\n      // Hint to the browser for performance (from gsap-performance skill)\n      gsap.set(icon, { willChange: 'transform' });\n\n      btn.addEventListener('mouseenter', () => {\n        // Animate the icon only to avoid hit-area jitter (mouse slipping off)\n        gsap.to(icon, {\n          y: -4,\n          scale: 1.15,\n          rotation: 5,\n          duration: 0.4,\n          ease: 'back.out(1.7)',\n          overwrite: true,\n        });\n      });\n\n      btn.addEventListener('mouseleave', () => {\n        gsap.to(icon, {\n          y: 0,\n          scale: 1,\n          rotation: 0,\n          duration: 0.3,\n          ease: 'power2.out',\n          overwrite: true,\n        });\n      });\n    });\n  });\n</script>\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/components/sections/Experience.astro",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/components/sections/Hero.astro",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'Github' is defined but never used.",
+        "line": 2,
+        "column": 26,
+        "messageId": "unusedVar",
+        "endLine": 2,
+        "endColumn": 32,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedVar",
+            "data": { "varName": "Github" },
+            "fix": { "range": [27, 35], "text": "" },
+            "desc": "Remove unused variable \"Github\"."
+          }
+        ]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'Mail' is defined but never used.",
+        "line": 2,
+        "column": 34,
+        "messageId": "unusedVar",
+        "endLine": 2,
+        "endColumn": 38,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedVar",
+            "data": { "varName": "Mail" },
+            "fix": { "range": [35, 41], "text": "" },
+            "desc": "Remove unused variable \"Mail\"."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 2,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "---\nimport { ArrowDownRight, Github, Mail, FileText, MapPin } from 'lucide-astro';\nimport { Image, getImage } from 'astro:assets';\nimport profileRealImg from '../../assets/profile-real.jpg';\nimport profileAvatarImg from '../../assets/profile-avatar.png';\n\nconst optRealImg = await getImage({\n  src: profileRealImg,\n  format: 'webp',\n  width: 400,\n});\n\n// Work Status Configuration\n// Edit this object to change your current availability status\nconst workStatus = {\n  isVisible: true, // Set to false to completely hide this status line from the website\n  isOpen: true, // Set to false when not looking for work (changes green dot to grey)\n  text: 'Open to full-time & freelance opportunities', // Example for closed: \"Not currently looking for new opportunities\"\n};\n\nconst startDate = new Date('2024-06-17');\nconst currentDate = new Date();\nlet expYears = currentDate.getFullYear() - startDate.getFullYear();\nconst m = currentDate.getMonth() - startDate.getMonth();\nif (m < 0 || (m === 0 && currentDate.getDate() < startDate.getDate())) {\n  expYears--;\n}\nconst expText = expYears > 0 ? `${expYears}y exp` : '<1y exp';\n---\n\n<section id=\"hero\" class=\"pt-24 pb-8 md:pt-32 flex flex-col min-h-[90vh]\">\n  <div class=\"flex-1 flex flex-col items-start justify-center w-full\">\n    <!-- Thanos Snap Avatar -->\n    <div\n      class=\"hero-avatar mb-8 md:mb-10 relative w-24 h-24 md:w-32 md:h-32 cursor-pointer rounded-full border-2 border-[var(--border)] shadow-md bg-[var(--bg-surface)] transition-shadow\"\n    >\n      <!-- Second Image (Revealed Underneath) -->\n      <Image\n        src={profileAvatarImg}\n        alt=\"Nattapol Singhad Avatar\"\n        class=\"absolute inset-0 w-full h-full object-cover rounded-full\"\n      />\n\n      <!-- First Image Container (The one that snaps) -->\n      <div\n        class=\"avatar-dust-container absolute inset-0 w-full h-full rounded-full overflow-visible z-10\"\n      >\n        <!-- Base Image that hides when snapping starts -->\n        <Image\n          src={profileRealImg}\n          alt=\"Nattapol Singhad\"\n          class=\"avatar-base-img absolute inset-0 w-full h-full object-cover rounded-full\"\n        />\n\n        <!-- Particles Grid -->\n        <div\n          class=\"avatar-particles absolute inset-0 w-full h-full pointer-events-none opacity-0\"\n        >\n          {\n            Array.from({ length: 225 }).map((_, i) => {\n              const rows = 15;\n              const cols = 15;\n              const x = i % cols;\n              const y = Math.floor(i / cols);\n\n              // Calculate distance from center to omit corners (keep only circular part)\n              const cx = (x + 0.5) / cols - 0.5;\n              const cy = (y + 0.5) / rows - 0.5;\n              const distance = Math.sqrt(cx * cx + cy * cy);\n\n              // 0.48 to ensure no particle bleeds outside the rounded-full border\n              if (distance > 0.48) return null;\n\n              const width = 100 / cols;\n              const height = 100 / rows;\n              const left = x * width;\n              const top = y * height;\n              return (\n                <div\n                  class=\"avatar-particle absolute\"\n                  style={`\n                  left: ${left}%; top: ${top}%; \n                  width: ${width + 0.5}%; height: ${height + 0.5}%;\n                  background-image: url('${optRealImg.src}');\n                  background-size: ${cols * 100}% ${rows * 100}%;\n                  background-position: ${x * (100 / (cols - 1))}% ${y * (100 / (rows - 1))}%;\n                `}\n                />\n              );\n            })\n          }\n        </div>\n      </div>\n    </div>\n\n    <h1\n      class=\"hero-name text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 md:mb-6 flex flex-wrap items-baseline gap-x-4 md:gap-x-6\"\n    >\n      <span\n        class=\"hero-name-text cursor-crosshair text-[var(--text)] transition-colors duration-300\"\n        >Nattapol Singhad</span\n      >\n      <span\n        class=\"text-3xl md:text-5xl lg:text-6xl text-[var(--accent)] opacity-80\"\n        >#DIS</span\n      >\n    </h1>\n\n    <h2\n      class=\"hero-role text-xl md:text-3xl text-[var(--text-muted)] font-medium mb-8 md:mb-10\"\n    >\n      Software Engineer\n    </h2>\n\n    <div\n      class=\"hero-meta text-base md:text-lg text-[var(--text-muted)] mb-10 md:mb-12 flex flex-col gap-3 md:gap-4\"\n    >\n      <span class=\"flex items-center gap-3\">\n        <MapPin class=\"w-5 h-5 opacity-70\" />\n        Based in Hat Yai, Phuket, Bangkok, Thailand\n      </span>\n      {\n        workStatus.isVisible && (\n          <span class=\"flex items-center gap-3\">\n            <span class=\"relative flex h-3.5 w-3.5 items-center justify-center\">\n              {workStatus.isOpen && (\n                <span class=\"animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75\" />\n              )}\n              <span\n                class={`relative inline-flex rounded-full h-2.5 w-2.5 ${workStatus.isOpen ? 'bg-green-500' : 'bg-gray-400'}`}\n              />\n            </span>\n            {workStatus.text}\n          </span>\n        )\n      }\n    </div>\n\n    <div class=\"hero-btns flex flex-wrap items-center gap-4\">\n      <a\n        href=\"#experience\"\n        class=\"inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-lg bg-[var(--text)] text-[var(--bg)] font-medium hover:opacity-90 transition-opacity\"\n      >\n        View Work\n        <ArrowDownRight class=\"w-5 h-5\" />\n      </a>\n      <a\n        href=\"/docs/Nattapol_Singhad_Resume_CV.pdf\"\n        target=\"_blank\"\n        rel=\"noopener noreferrer\"\n        class=\"inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-lg border border-[var(--border)] hover:bg-[var(--tag-bg)] transition-colors\"\n      >\n        <FileText class=\"w-5 h-5\" />\n        Resume\n      </a>\n    </div>\n  </div>\n\n  <div\n    class=\"hero-stats w-full pt-8 mt-16 md:mt-24 border-t border-[var(--border)] flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm md:text-base font-medium text-[var(--text-muted)]\"\n  >\n    <span>{expText}</span>\n    <span>&middot;</span>\n    <span>3 companies</span>\n    <span>&middot;</span>\n    <span>10+ shipped projects</span>\n  </div>\n</section>\n\n<script>\n  import { gsap } from 'gsap';\n  import { SplitText } from 'gsap/SplitText';\n\n  gsap.registerPlugin(SplitText);\n\n  document.addEventListener('astro:page-load', () => {\n    const nameEl = document.querySelector('.hero-name-text');\n\n    if (nameEl && !nameEl.getAttribute('data-splitted')) {\n      nameEl.setAttribute('data-splitted', 'true');\n\n      const split = new SplitText(nameEl, { type: 'words,chars' });\n      gsap.set(split.chars, { willChange: 'transform, color' });\n\n      split.chars.forEach((char) => {\n        char.addEventListener('mouseenter', () => {\n          if (gsap.isTweening(char)) return;\n\n          gsap.set(char, { y: 0, scale: 1, color: 'inherit', rotateZ: 0 });\n\n          gsap.to(char, {\n            y: -12,\n            scale: 1.15,\n            color: 'var(--accent)',\n            rotateZ: () => gsap.utils.random(-10, 10),\n            yoyo: true,\n            repeat: 1,\n            duration: 0.25,\n            ease: 'power2.out',\n          });\n        });\n      });\n    }\n\n    // --- Avatar Thanos Snap Animation ---\n    const avatar = document.querySelector('.hero-avatar');\n    const baseImg = document.querySelector('.avatar-base-img');\n    const particlesContainer = document.querySelector('.avatar-particles');\n    const particles = document.querySelectorAll('.avatar-particle');\n\n    if (avatar && particles.length > 0) {\n      avatar.addEventListener('mouseenter', () => {\n        gsap.killTweensOf(particles);\n        gsap.killTweensOf(avatar);\n\n        // Glow border\n        gsap.to(avatar, { borderColor: 'var(--accent)', duration: 0.3 });\n\n        // Hide base image, show particles container\n        gsap.set(baseImg, { opacity: 0 });\n        gsap.set(particlesContainer, { opacity: 1 });\n\n        // Ensure particles are clean before scattering\n        gsap.set(particles, { x: 0, y: 0, rotationZ: 0, scale: 1, opacity: 1 });\n\n        // Scatter particles like dust (up and right like blowing wind)\n        gsap.to(particles, {\n          x: () => gsap.utils.random(20, 100),\n          y: () => gsap.utils.random(-80, 20),\n          rotationZ: () => gsap.utils.random(-90, 90),\n          scale: () => gsap.utils.random(0, 0.5),\n          opacity: 0,\n          duration: 0.8,\n          ease: 'power2.out',\n          stagger: {\n            amount: 0.4,\n            from: 'start', // Start dissolving from top-left to bottom-right\n            grid: [15, 15],\n          },\n        });\n      });\n\n      avatar.addEventListener('mouseleave', () => {\n        gsap.killTweensOf(particles);\n        gsap.killTweensOf(avatar);\n\n        // Revert border\n        gsap.to(avatar, { borderColor: 'var(--border)', duration: 0.3 });\n\n        // Assemble particles back\n        gsap.to(particles, {\n          x: 0,\n          y: 0,\n          rotationZ: 0,\n          scale: 1,\n          opacity: 1,\n          duration: 0.5,\n          ease: 'power2.inOut',\n          stagger: {\n            amount: 0.3,\n            from: 'random', // Reassemble randomly\n          },\n          onComplete: () => {\n            gsap.set(baseImg, { opacity: 1 });\n            gsap.set(particlesContainer, { opacity: 0 });\n          },\n        });\n      });\n    }\n  });\n</script>\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/components/sections/Projects.astro",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/components/sections/Skills.astro",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/components/sections/Uptime.astro",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'reqId' is assigned a value but never used.",
+        "line": 199,
+        "column": 9,
+        "messageId": "unusedVar",
+        "endLine": 199,
+        "endColumn": 14
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "---\nimport { Timer } from 'lucide-astro';\n---\n\n<section\n  id=\"uptime\"\n  class=\"py-32 border-t border-[var(--border)] overflow-hidden\"\n>\n  <div class=\"max-w-5xl mx-auto px-6\">\n    <div class=\"flex items-center gap-3 mb-16 uptime-header\">\n      <div class=\"p-3 rounded-xl bg-[var(--accent)]/10 text-[var(--accent)]\">\n        <Timer class=\"w-6 h-6\" />\n      </div>\n      <h2 class=\"section-heading text-3xl font-bold\">System Uptime</h2>\n    </div>\n\n    <div\n      class=\"bg-[var(--bg-surface)] border border-[var(--border)] rounded-3xl p-8 md:p-16 shadow-sm uptime-container relative overflow-hidden\"\n    >\n      <!-- Glow effect -->\n      <div\n        class=\"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-xl bg-[var(--accent)]/5 blur-[120px] rounded-full pointer-events-none\"\n      >\n      </div>\n\n      <div\n        class=\"relative grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 md:gap-4 lg:gap-5 text-center font-mono\"\n      >\n        <!-- Years -->\n        <div\n          class=\"flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/30 rounded-2xl border border-[var(--border)]/50\"\n        >\n          <span\n            id=\"uptime-years\"\n            class=\"text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] tracking-tighter tabular-nums dark:[text-shadow:0_0_15px_rgba(255,255,255,0.3)]\"\n            >00</span\n          >\n          <span\n            class=\"text-[10px] md:text-xs uppercase tracking-widest text-[var(--text-muted)] mt-2 md:mt-4 font-sans font-medium\"\n            >Years</span\n          >\n        </div>\n\n        <!-- Months -->\n        <div\n          class=\"flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/30 rounded-2xl border border-[var(--border)]/50\"\n        >\n          <span\n            id=\"uptime-months\"\n            class=\"text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] tracking-tighter tabular-nums dark:[text-shadow:0_0_15px_rgba(255,255,255,0.3)]\"\n            >00</span\n          >\n          <span\n            class=\"text-[10px] md:text-xs uppercase tracking-widest text-[var(--text-muted)] mt-2 md:mt-4 font-sans font-medium\"\n            >Months</span\n          >\n        </div>\n\n        <!-- Days -->\n        <div\n          class=\"flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/30 rounded-2xl border border-[var(--border)]/50\"\n        >\n          <span\n            id=\"uptime-days\"\n            class=\"text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] tracking-tighter tabular-nums dark:[text-shadow:0_0_15px_rgba(255,255,255,0.3)]\"\n            >00</span\n          >\n          <span\n            class=\"text-[10px] md:text-xs uppercase tracking-widest text-[var(--text-muted)] mt-2 md:mt-4 font-sans font-medium\"\n            >Days</span\n          >\n        </div>\n\n        <!-- Hours -->\n        <div\n          class=\"flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/30 rounded-2xl border border-[var(--border)]/50\"\n        >\n          <span\n            id=\"uptime-hours\"\n            class=\"text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] tracking-tighter tabular-nums dark:[text-shadow:0_0_15px_rgba(255,255,255,0.3)]\"\n            >00</span\n          >\n          <span\n            class=\"text-[10px] md:text-xs uppercase tracking-widest text-[var(--text-muted)] mt-2 md:mt-4 font-sans font-medium\"\n            >Hours</span\n          >\n        </div>\n\n        <!-- Minutes -->\n        <div\n          class=\"flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/30 rounded-2xl border border-[var(--border)]/50\"\n        >\n          <span\n            id=\"uptime-minutes\"\n            class=\"text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] tracking-tighter tabular-nums dark:[text-shadow:0_0_15px_rgba(255,255,255,0.3)]\"\n            >00</span\n          >\n          <span\n            class=\"text-[10px] md:text-xs uppercase tracking-widest text-[var(--text-muted)] mt-2 md:mt-4 font-sans font-medium\"\n            >Minutes</span\n          >\n        </div>\n\n        <!-- Seconds -->\n        <div\n          class=\"flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/30 rounded-2xl border border-[var(--border)]/50\"\n        >\n          <span\n            id=\"uptime-seconds\"\n            class=\"text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] tracking-tighter tabular-nums dark:[text-shadow:0_0_15px_rgba(255,255,255,0.3)]\"\n            >00</span\n          >\n          <span\n            class=\"text-[10px] md:text-xs uppercase tracking-widest text-[var(--text-muted)] mt-2 md:mt-4 font-sans font-medium\"\n            >Seconds</span\n          >\n        </div>\n\n        <!-- Milliseconds -->\n        <div\n          class=\"flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/10 rounded-2xl border border-[var(--accent)]/30 text-[var(--accent)] col-span-2 md:col-span-4 lg:col-span-2 shadow-[0_0_15px_rgba(26,107,255,0.1)] dark:shadow-[0_0_20px_rgba(77,143,255,0.15)] relative overflow-hidden\"\n        >\n          <!-- Subtle inner pulse -->\n          <div\n            class=\"absolute inset-0 bg-[var(--accent)]/5 animate-pulse rounded-2xl\"\n          >\n          </div>\n          <span\n            id=\"uptime-milliseconds\"\n            class=\"relative text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter tabular-nums text-[var(--accent)] z-10 dark:[text-shadow:0_0_15px_rgba(77,143,255,0.6)]\"\n            >000</span\n          >\n          <span\n            class=\"relative text-[10px] md:text-xs uppercase tracking-widest text-[var(--accent)] mt-2 md:mt-4 font-sans font-medium opacity-80 z-10\"\n            >Ms</span\n          >\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n\n<script>\n  import { gsap } from 'gsap';\n  import { ScrollTrigger } from 'gsap/ScrollTrigger';\n\n  gsap.registerPlugin(ScrollTrigger);\n\n  document.addEventListener('astro:page-load', () => {\n    // 1. Entrance Animation using GSAP ScrollTrigger\n    const header = document.querySelector('.uptime-header');\n    const container = document.querySelector('.uptime-container');\n    const digits = document.querySelectorAll(\n      '.uptime-container span[id^=\"uptime-\"]'\n    );\n\n    // Prevent global animations.ts from killing this trigger by delaying initialization slightly\n    setTimeout(() => {\n      if (header && container) {\n        // Set initial state\n        gsap.set([header, container, digits], { opacity: 0 });\n\n        const tl = gsap.timeline({\n          scrollTrigger: {\n            trigger: '#uptime',\n            start: 'top 85%', // Trigger when top of section hits 85% of viewport\n          },\n        });\n\n        tl.fromTo(\n          header,\n          { opacity: 0, y: 30 },\n          { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }\n        )\n          .fromTo(\n            container,\n            { opacity: 0, y: 30 },\n            { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },\n            '-=0.6'\n          )\n          .fromTo(\n            digits,\n            { y: 20, opacity: 0 },\n            {\n              y: 0,\n              opacity: 1,\n              duration: 0.5,\n              stagger: 0.05,\n              ease: 'back.out(1.5)',\n            },\n            '-=0.4'\n          );\n      }\n    }, 150);\n\n    // 2. Real-time Counter Logic\n    const birthDate = new Date('2001-06-29T04:00:00+07:00');\n\n    let reqId: number;\n\n    function updateUptime() {\n      // Dynamic lookup to ensure we stop the loop if the component unmounts\n      const elYears = document.getElementById('uptime-years');\n      if (!elYears) return;\n\n      const elMonths = document.getElementById('uptime-months');\n      const elDays = document.getElementById('uptime-days');\n      const elHours = document.getElementById('uptime-hours');\n      const elMinutes = document.getElementById('uptime-minutes');\n      const elSeconds = document.getElementById('uptime-seconds');\n      const elMs = document.getElementById('uptime-milliseconds');\n\n      const now = new Date();\n\n      let years = now.getFullYear() - birthDate.getFullYear();\n      let months = now.getMonth() - birthDate.getMonth();\n      let days = now.getDate() - birthDate.getDate();\n      let hours = now.getHours() - birthDate.getHours();\n      let minutes = now.getMinutes() - birthDate.getMinutes();\n      let seconds = now.getSeconds() - birthDate.getSeconds();\n      let milliseconds = now.getMilliseconds() - birthDate.getMilliseconds();\n\n      if (milliseconds < 0) {\n        milliseconds += 1000;\n        seconds--;\n      }\n      if (seconds < 0) {\n        seconds += 60;\n        minutes--;\n      }\n      if (minutes < 0) {\n        minutes += 60;\n        hours--;\n      }\n      if (hours < 0) {\n        hours += 24;\n        days--;\n      }\n      if (days < 0) {\n        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);\n        days += prevMonth.getDate();\n        months--;\n      }\n      if (months < 0) {\n        months += 12;\n        years--;\n      }\n\n      // Batch DOM writes\n      elYears.innerText = years.toString().padStart(2, '0');\n      if (elMonths) elMonths.innerText = months.toString().padStart(2, '0');\n      if (elDays) elDays.innerText = days.toString().padStart(2, '0');\n      if (elHours) elHours.innerText = hours.toString().padStart(2, '0');\n      if (elMinutes) elMinutes.innerText = minutes.toString().padStart(2, '0');\n      if (elSeconds) elSeconds.innerText = seconds.toString().padStart(2, '0');\n      if (elMs) elMs.innerText = milliseconds.toString().padStart(3, '0');\n\n      reqId = requestAnimationFrame(updateUptime);\n    }\n\n    if (document.getElementById('uptime-years')) {\n      updateUptime();\n    }\n  });\n</script>\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/components/ui/ScrollActions.astro",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/components/ui/SkillIcon.astro",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/components/ui/ThemeToggle.astro",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/data/experience.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/data/projects.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/data/skills.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/layouts/BaseLayout.astro",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-unused-vars",
+        "severity": 2,
+        "message": "'profileImg' is defined but never used.",
+        "line": 5,
+        "column": 8,
+        "messageId": "unusedVar",
+        "endLine": 5,
+        "endColumn": 18,
+        "suggestions": [
+          {
+            "messageId": "removeUnusedImportDeclaration",
+            "data": { "varName": "profileImg" },
+            "fix": { "range": [147, 195], "text": "" },
+            "desc": "Remove unused import declaration."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "---\nimport '../styles/global.css';\nimport Navbar from '../components/layout/Navbar.astro';\nimport Footer from '../components/layout/Footer.astro';\nimport profileImg from '../assets/profile.jpg';\nimport { ClientRouter } from 'astro:transitions';\nimport ScrollActions from '../components/ui/ScrollActions.astro';\n\ninterface Props {\n  title?: string;\n  description?: string;\n}\n\nconst {\n  title = 'Nattapol Singhad — Software Engineer',\n  description = 'Minimal, clean personal portfolio for a software engineer based in Hat Yai, Thailand.',\n} = Astro.props;\n\nconst ogImageURL = new URL('/og-image.png', Astro.site || Astro.url);\n---\n\n<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"description\" content={description} />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\" />\n    <meta name=\"generator\" content={Astro.generator} />\n\n    <title>{title}</title>\n\n    <meta property=\"og:title\" content={title} />\n    <meta property=\"og:description\" content={description} />\n    <meta property=\"og:image\" content={ogImageURL} />\n    <meta property=\"og:type\" content=\"website\" />\n    <ClientRouter />\n\n    <script is:inline>\n      const saved =\n        localStorage.getItem('theme') ??\n        (window.matchMedia('(prefers-color-scheme: dark)').matches\n          ? 'dark'\n          : 'light');\n      document.documentElement.setAttribute('data-theme', saved);\n    </script>\n  </head>\n  <body class=\"min-h-screen flex flex-col\">\n    <ScrollActions />\n    <Navbar />\n    <div id=\"smooth-wrapper\">\n      <div id=\"smooth-content\" class=\"flex flex-col min-h-screen\">\n        <main class=\"flex-grow\">\n          <slot />\n        </main>\n        <Footer />\n      </div>\n    </div>\n  </body>\n</html>\n",
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/layouts/Layout.astro",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/pages/index.astro",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "/Users/nattapol-sh/Documents/Projects/DEVME/nattapol-portfolio/src/scripts/animations.ts",
+    "messages": [
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 2,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 18,
+        "column": 65,
+        "messageId": "unexpectedAny",
+        "endLine": 18,
+        "endColumn": 68,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [559, 562], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [559, 562], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ]
+      }
+    ],
+    "suppressedMessages": [],
+    "errorCount": 1,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "source": "import { gsap } from 'gsap';\nimport { ScrollTrigger } from 'gsap/ScrollTrigger';\nimport { ScrollSmoother } from 'gsap/ScrollSmoother';\nimport { ScrollToPlugin } from 'gsap/ScrollToPlugin';\n\ngsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);\n\nfunction initAnimations() {\n  const mm = gsap.matchMedia();\n\n  mm.add(\n    {\n      reduceMotion: '(prefers-reduced-motion: reduce)',\n      isDesktop: '(min-width: 768px)',\n      isMobile: '(max-width: 767px)',\n    },\n    (context) => {\n      const { reduceMotion, isDesktop } = context.conditions as any;\n\n      if (reduceMotion) {\n        return; // skip animations\n      }\n\n      // Initialize ScrollSmoother for silky smooth scrolling on desktop\n      if (isDesktop) {\n        ScrollSmoother.create({\n          wrapper: '#smooth-wrapper',\n          content: '#smooth-content',\n          smooth: 1.5,\n          effects: true,\n        });\n      }\n\n      // Prevent flickering by setting initial state before scroll triggers\n      gsap.set(\n        [\n          '.section-heading',\n          '.section-content',\n          '.timeline-item',\n          '.skill-tag',\n          '.contact-item',\n        ],\n        { opacity: 0 }\n      );\n\n      // Hero entrance - smoother, longer duration, more dramatic easing\n      const tl = gsap.timeline({\n        defaults: { ease: 'expo.out', duration: 1.2 },\n      });\n\n      tl.from('.hero-avatar', { opacity: 0, scale: 0.9, duration: 1.5 })\n        .from('.hero-name', { opacity: 0, y: 40 }, '-=1.1')\n        .from('.hero-role', { opacity: 0, y: 30 }, '-=1.0')\n        .from('.hero-meta', { opacity: 0, y: 20 }, '-=1.0')\n        .from('.hero-btns', { opacity: 0, y: 20 }, '-=1.0')\n        .from('.hero-stats', { opacity: 0, duration: 1 }, '-=0.8');\n\n      // Navbar fade down\n      gsap.from('.nav-header', {\n        y: -30,\n        opacity: 0,\n        duration: 1,\n        ease: 'power4.out',\n        delay: 0.3,\n      });\n\n      // Generic section headings\n      gsap.utils.toArray<HTMLElement>('.section-heading').forEach((el) => {\n        gsap.fromTo(\n          el,\n          { opacity: 0, y: 40 },\n          {\n            opacity: 1,\n            y: 0,\n            duration: 1,\n            ease: 'expo.out',\n            scrollTrigger: { trigger: el, start: 'top 85%' },\n          }\n        );\n      });\n\n      // Generic section content\n      gsap.utils.toArray<HTMLElement>('.section-content').forEach((el) => {\n        gsap.fromTo(\n          el,\n          { opacity: 0, y: 30 },\n          {\n            opacity: 1,\n            y: 0,\n            duration: 1,\n            ease: 'power3.out',\n            scrollTrigger: { trigger: el, start: 'top 85%' },\n          }\n        );\n      });\n\n      // Experience timeline\n      const expSection = document.getElementById('experience');\n      if (expSection) {\n        gsap.fromTo(\n          '.timeline-line',\n          { scaleY: 0 },\n          {\n            scaleY: 1,\n            transformOrigin: 'top',\n            ease: 'none',\n            scrollTrigger: {\n              trigger: expSection,\n              start: 'top 60%',\n              end: 'bottom 80%',\n              scrub: 1,\n            },\n          }\n        );\n\n        ScrollTrigger.batch('.timeline-item', {\n          interval: 0.1,\n          onEnter: (batch) =>\n            gsap.fromTo(\n              batch,\n              { opacity: 0, y: 30, x: -10 },\n              {\n                opacity: 1,\n                y: 0,\n                x: 0,\n                stagger: 0.15,\n                duration: 0.8,\n                ease: 'power3.out',\n                overwrite: true,\n              }\n            ),\n          start: 'top 85%',\n        });\n\n        // Cool elastic pop animation for the dot when the line reaches it\n        ScrollTrigger.batch('.timeline-dot', {\n          interval: 0.1,\n          onEnter: (batch) =>\n            gsap.to(batch, {\n              opacity: 1,\n              scale: 1,\n              stagger: 0.1,\n              duration: 1,\n              ease: 'elastic.out(1, 0.4)',\n              overwrite: true,\n            }),\n          start: 'top 65%',\n        });\n      }\n\n      // Skills tags\n      ScrollTrigger.batch('.skill-tag', {\n        interval: 0.1,\n        batchMax: 5,\n        onEnter: (batch) =>\n          gsap.fromTo(\n            batch,\n            { opacity: 0, scale: 0.8, y: 10 },\n            {\n              opacity: 1,\n              scale: 1,\n              y: 0,\n              stagger: 0.05,\n              duration: 0.6,\n              ease: 'back.out(1.5)',\n              overwrite: true,\n            }\n          ),\n        start: 'top 90%',\n      });\n\n      // Contact section\n      ScrollTrigger.batch('.contact-item', {\n        interval: 0.1,\n        onEnter: (batch) =>\n          gsap.fromTo(\n            batch,\n            { opacity: 0, y: 30 },\n            {\n              opacity: 1,\n              y: 0,\n              stagger: 0.15,\n              duration: 1,\n              ease: 'power3.out',\n              overwrite: true,\n            }\n          ),\n        start: 'top 85%',\n      });\n\n      ScrollTrigger.refresh();\n\n      // Smooth scroll for all anchor links\n      document\n        .querySelectorAll<HTMLAnchorElement>('a[href^=\"#\"]')\n        .forEach((anchor) => {\n          anchor.addEventListener('click', function (e) {\n            const targetId = this.getAttribute('href');\n            if (!targetId || targetId === '#') return;\n\n            const targetElement = document.querySelector(targetId);\n            if (targetElement) {\n              e.preventDefault();\n              const smoother = ScrollSmoother.get();\n              if (smoother) {\n                smoother.scrollTo(targetElement, true, 'top top');\n              } else {\n                targetElement.scrollIntoView({ behavior: 'smooth' });\n              }\n            }\n          });\n        });\n      return () => {\n        ScrollSmoother.get()?.kill();\n      };\n    }\n  );\n}\n\nfunction initScrollActions() {\n  const widget = document.getElementById('scroll-actions-widget');\n  const autoScrollBtn = document.getElementById('auto-scroll-btn');\n  const scrollTopBtn = document.getElementById('scroll-top-btn');\n  const scrollSpeedBtn = document.getElementById('scroll-speed-btn');\n  const playIcon = autoScrollBtn?.querySelector('.play-icon');\n  const pauseIcon = autoScrollBtn?.querySelector('.pause-icon');\n\n  if (!widget || !autoScrollBtn || !scrollTopBtn || !scrollSpeedBtn) return;\n\n  let isAutoScrolling = false;\n  let scrollSpeed = 1; // 1x to 3x\n  const basePixelsPerSec = 150;\n\n  // Show scroll-top button after scrolling down 300px natively\n  const handleScroll = () => {\n    if (window.scrollY > 300) {\n      scrollTopBtn.classList.add('is-visible');\n    } else {\n      scrollTopBtn.classList.remove('is-visible');\n    }\n  };\n  window.addEventListener('scroll', handleScroll, { passive: true });\n  handleScroll(); // Initial check\n\n  scrollSpeedBtn.addEventListener('click', (e) => {\n    e.preventDefault();\n    scrollSpeed = scrollSpeed >= 3 ? 1 : scrollSpeed + 1;\n    scrollSpeedBtn.innerText = `${scrollSpeed}x`;\n    scrollSpeedBtn.title = `Speed: ${scrollSpeed}x`;\n\n    // If currently scrolling, restart with new speed\n    if (isAutoScrolling) {\n      stopAutoScroll(null, true);\n      startAutoScroll();\n    }\n  });\n\n  const stopAutoScroll = (e?: Event | null, isRestarting = false) => {\n    if (!isAutoScrolling) return;\n    isAutoScrolling = false;\n    gsap.killTweensOf(window); // Safely kill all window tweens\n\n    if (!isRestarting) {\n      playIcon?.classList.remove('hidden');\n      pauseIcon?.classList.add('hidden');\n    }\n  };\n\n  const startAutoScroll = () => {\n    isAutoScrolling = true;\n    playIcon?.classList.add('hidden');\n    pauseIcon?.classList.remove('hidden');\n\n    const maxScroll =\n      Math.max(\n        document.body.scrollHeight,\n        document.documentElement.scrollHeight\n      ) - window.innerHeight;\n    const currentScroll = window.scrollY;\n    const remainingScroll = maxScroll - currentScroll;\n    const duration = remainingScroll / (basePixelsPerSec * scrollSpeed);\n\n    gsap.to(window, {\n      scrollTo: { y: 'max', autoKill: false },\n      duration: duration,\n      ease: 'none',\n      onComplete: stopAutoScroll,\n    });\n  };\n\n  autoScrollBtn.addEventListener('click', (e) => {\n    e.preventDefault();\n    if (isAutoScrolling) {\n      stopAutoScroll();\n    } else {\n      startAutoScroll();\n    }\n  });\n\n  scrollTopBtn.addEventListener('click', (e) => {\n    e.preventDefault();\n    stopAutoScroll();\n    const smoother = ScrollSmoother.get();\n    if (smoother) {\n      smoother.scrollTo(0, true);\n    } else {\n      gsap.to(window, { scrollTo: 0, duration: 1, ease: 'power3.inOut' });\n    }\n  });\n\n  // Listen for user interaction to explicitly stop scroll (removed mousedown to prevent button conflicts)\n  window.addEventListener('wheel', stopAutoScroll, { passive: true });\n  window.addEventListener('touchstart', stopAutoScroll, { passive: true });\n}\n\ndocument.addEventListener('astro:page-load', () => {\n  ScrollTrigger.getAll().forEach((t) => t.kill());\n  initAnimations();\n  initScrollActions();\n\n  // Experience Projects Toggle\n  document.querySelectorAll('.project-toggle').forEach((btn) => {\n    btn.addEventListener('click', () => {\n      const content = btn.nextElementSibling as HTMLElement;\n      const showText = btn.querySelector('.show-text');\n      const hideText = btn.querySelector('.hide-text');\n\n      if (!content) return;\n\n      const isOpen = content.classList.contains('is-open');\n\n      if (isOpen) {\n        gsap.to(content, {\n          height: 0,\n          opacity: 0,\n          duration: 0.4,\n          ease: 'power2.inOut',\n        });\n        content.classList.remove('is-open');\n        showText?.classList.remove('hidden');\n        hideText?.classList.add('hidden');\n      } else {\n        gsap.to(content, {\n          height: 'auto',\n          opacity: 1,\n          duration: 0.5,\n          ease: 'power3.out',\n          onComplete: () => ScrollTrigger.refresh(),\n        });\n        content.classList.add('is-open');\n        showText?.classList.add('hidden');\n        hideText?.classList.remove('hidden');\n      }\n    });\n  });\n});\n\nwindow.addEventListener('load', () => {\n  ScrollTrigger.refresh();\n});\n",
+    "usedDeprecatedRules": []
+  }
+]

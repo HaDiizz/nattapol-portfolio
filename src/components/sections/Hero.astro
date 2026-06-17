@@ -1,57 +1,290 @@
 ---
-import { ArrowDownRight, Github, Mail, FileText } from 'lucide-astro';
-import { Image } from 'astro:assets';
-import profileImg from '../../assets/profile.jpg';
+import { ArrowDownRight, Github, Mail, FileText, MapPin } from 'lucide-astro';
+import { Image, getImage } from 'astro:assets';
+import profileRealImg from '../../assets/profile-real.jpg';
+import profileAvatarImg from '../../assets/profile-avatar.png';
+
+const optRealImg = await getImage({
+  src: profileRealImg,
+  format: 'webp',
+  width: 400,
+});
+
+// Work Status Configuration
+// Edit this object to change your current availability status
+const workStatus = {
+  isVisible: true, // Set to false to completely hide this status line from the website
+  isOpen: true, // Set to false when not looking for work (changes green dot to grey)
+  text: 'Open to full-time & freelance opportunities', // Example for closed: "Not currently looking for new opportunities"
+};
+
+const startDate = new Date('2024-06-17');
+const currentDate = new Date();
+let expYears = currentDate.getFullYear() - startDate.getFullYear();
+const m = currentDate.getMonth() - startDate.getMonth();
+if (m < 0 || (m === 0 && currentDate.getDate() < startDate.getDate())) {
+  expYears--;
+}
+const expText = expYears > 0 ? `${expYears}y exp` : '<1y exp';
 ---
 
-<section id="hero" class="pt-32 pb-20 md:pt-40 md:pb-32 flex flex-col items-start min-h-[80vh] justify-center">
-  <div class="hero-avatar mb-8">
-    <Image 
-      src={profileImg} 
-      alt="Nattapol Singhad" 
-      class="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border border-[var(--border)] transition-all duration-500"
-    />
+<section id="hero" class="pt-24 pb-8 md:pt-32 flex flex-col min-h-[90vh]">
+  <div class="flex-1 flex flex-col items-start justify-center w-full">
+    <!-- Thanos Snap Avatar -->
+    <div
+      class="hero-avatar mb-8 md:mb-10 relative w-24 h-24 md:w-32 md:h-32 cursor-pointer rounded-full border-2 border-[var(--border)] shadow-md bg-[var(--bg-surface)] transition-shadow"
+    >
+      <!-- Second Image (Revealed Underneath) -->
+      <Image
+        src={profileAvatarImg}
+        alt="Nattapol Singhad Avatar"
+        class="absolute inset-0 w-full h-full object-cover rounded-full"
+      />
+
+      <!-- First Image Container (The one that snaps) -->
+      <div
+        class="avatar-dust-container absolute inset-0 w-full h-full rounded-full overflow-visible z-10"
+      >
+        <!-- Base Image that hides when snapping starts -->
+        <Image
+          src={profileRealImg}
+          alt="Nattapol Singhad"
+          class="avatar-base-img absolute inset-0 w-full h-full object-cover rounded-full"
+        />
+
+        <!-- Particles Grid -->
+        <div
+          class="avatar-particles absolute inset-0 w-full h-full pointer-events-none opacity-0"
+        >
+          {
+            Array.from({ length: 225 }).map((_, i) => {
+              const rows = 15;
+              const cols = 15;
+              const x = i % cols;
+              const y = Math.floor(i / cols);
+
+              // Calculate distance from center to omit corners (keep only circular part)
+              const cx = (x + 0.5) / cols - 0.5;
+              const cy = (y + 0.5) / rows - 0.5;
+              const distance = Math.sqrt(cx * cx + cy * cy);
+
+              // 0.48 to ensure no particle bleeds outside the rounded-full border
+              if (distance > 0.48) return null;
+
+              const width = 100 / cols;
+              const height = 100 / rows;
+              const left = x * width;
+              const top = y * height;
+              return (
+                <div
+                  class="avatar-particle absolute"
+                  style={`
+                  left: ${left}%; top: ${top}%; 
+                  width: ${width + 0.5}%; height: ${height + 0.5}%;
+                  background-image: url('${optRealImg.src}');
+                  background-size: ${cols * 100}% ${rows * 100}%;
+                  background-position: ${x * (100 / (cols - 1))}% ${y * (100 / (rows - 1))}%;
+                `}
+                />
+              );
+            })
+          }
+        </div>
+      </div>
+    </div>
+
+    <h1
+      class="hero-name text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 md:mb-6 flex flex-wrap items-baseline gap-x-4 md:gap-x-6"
+    >
+      <span
+        class="hero-name-text cursor-crosshair text-[var(--text)] transition-colors duration-300"
+        >Nattapol Singhad</span
+      >
+      <span
+        class="text-3xl md:text-5xl lg:text-6xl text-[var(--accent)] opacity-80"
+        >#DIS</span
+      >
+    </h1>
+
+    <h2
+      class="hero-role text-xl md:text-3xl text-[var(--text-muted)] font-medium mb-8 md:mb-10"
+    >
+      Software Engineer
+    </h2>
+
+    <div
+      class="hero-meta text-base md:text-lg text-[var(--text-muted)] mb-10 md:mb-12 flex flex-col gap-3 md:gap-4"
+    >
+      <span class="flex items-center gap-3">
+        <MapPin class="w-5 h-5 opacity-70" />
+        Based in Hat Yai, Phuket, Bangkok, Thailand
+      </span>
+      {
+        workStatus.isVisible && (
+          <span class="flex items-center gap-3">
+            <span class="relative flex h-3.5 w-3.5 items-center justify-center">
+              {workStatus.isOpen && (
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+              )}
+              <span
+                class={`relative inline-flex rounded-full h-2.5 w-2.5 ${workStatus.isOpen ? 'bg-green-500' : 'bg-gray-400'}`}
+              />
+            </span>
+            {workStatus.text}
+          </span>
+        )
+      }
+    </div>
+
+    <div class="hero-btns flex flex-wrap items-center gap-4">
+      <a
+        href="#experience"
+        class="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-lg bg-[var(--text)] text-[var(--bg)] font-medium hover:opacity-90 transition-opacity"
+      >
+        View Work
+        <ArrowDownRight class="w-5 h-5" />
+      </a>
+      <a
+        href="/docs/Nattapol_Singhad_Resume_CV.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-lg border border-[var(--border)] hover:bg-[var(--tag-bg)] transition-colors"
+      >
+        <FileText class="w-5 h-5" />
+        Resume
+      </a>
+    </div>
   </div>
 
-  <h1 class="hero-name text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4">
-    Nattapol Singhad
-  </h1>
-  
-  <h2 class="hero-role text-xl md:text-2xl text-[var(--text-muted)] font-medium mb-8">
-    Software Engineer
-  </h2>
-
-  <div class="hero-meta text-sm md:text-base text-[var(--text-muted)] mb-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-    <span class="flex items-center gap-2">
-      <span class="w-2 h-2 rounded-full bg-green-500"></span>
-      Based in Hat Yai, Phuket, Bangkok, Thailand &middot; Open to remote
-    </span>
-  </div>
-
-  <div class="hero-btns flex flex-wrap items-center gap-4 mb-16">
-    <a href="#projects" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--text)] text-[var(--bg)] font-medium hover:opacity-90 transition-opacity">
-      View Work
-      <ArrowDownRight class="w-4 h-4" />
-    </a>
-    <a href="/docs/Nattapol_Singhad_Resume_CV.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-[var(--border)] hover:bg-[var(--tag-bg)] transition-colors">
-      <FileText class="w-4 h-4" />
-      Resume
-    </a>
-    <a href="https://github.com/HaDiizz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-[var(--border)] hover:bg-[var(--tag-bg)] transition-colors">
-      <Github class="w-4 h-4" />
-      GitHub
-    </a>
-    <a href="mailto:nattapol.dev@gmail.com" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-[var(--border)] hover:bg-[var(--tag-bg)] transition-colors">
-      <Mail class="w-4 h-4" />
-      Email
-    </a>
-  </div>
-
-  <div class="hero-stats w-full pt-8 border-t border-[var(--border)] flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm font-medium text-[var(--text-muted)]">
-    <span>2y exp</span>
+  <div
+    class="hero-stats w-full pt-8 mt-16 md:mt-24 border-t border-[var(--border)] flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm md:text-base font-medium text-[var(--text-muted)]"
+  >
+    <span>{expText}</span>
     <span>&middot;</span>
     <span>3 companies</span>
     <span>&middot;</span>
     <span>10+ shipped projects</span>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { SplitText } from 'gsap/SplitText';
+
+  gsap.registerPlugin(SplitText);
+
+  document.addEventListener('astro:page-load', () => {
+    let mm = gsap.matchMedia();
+
+    mm.add(
+      {
+        reduceMotion: '(prefers-reduced-motion: reduce)',
+        isNormal: '(prefers-reduced-motion: no-preference)',
+      },
+      (context) => {
+        const { isNormal } = context.conditions;
+        const nameEl = document.querySelector('.hero-name-text');
+
+        // Only split text and add hover animation if user prefers normal motion
+        if (isNormal && nameEl && !nameEl.getAttribute('data-splitted')) {
+          nameEl.setAttribute('data-splitted', 'true');
+
+          const split = new SplitText(nameEl, { type: 'words,chars' });
+          gsap.set(split.chars, { willChange: 'transform, color' });
+
+          split.chars.forEach((char) => {
+            char.addEventListener('mouseenter', () => {
+              if (gsap.isTweening(char)) return;
+
+              gsap.set(char, { y: 0, scale: 1, color: 'inherit', rotateZ: 0 });
+
+              gsap.to(char, {
+                y: -12,
+                scale: 1.15,
+                color: 'var(--accent)',
+                rotateZ: () => gsap.utils.random(-10, 10),
+                yoyo: true,
+                repeat: 1,
+                duration: 0.25,
+                ease: 'power2.out',
+              });
+            });
+          });
+        }
+
+        // --- Avatar Thanos Snap Animation ---
+        const avatar = document.querySelector('.hero-avatar');
+        const baseImg = document.querySelector('.avatar-base-img');
+        const particlesContainer = document.querySelector('.avatar-particles');
+        const particles = document.querySelectorAll('.avatar-particle');
+
+        // Only add Thanos snap if user prefers normal motion
+        if (isNormal && avatar && particles.length > 0) {
+          avatar.addEventListener('mouseenter', () => {
+            gsap.killTweensOf(particles);
+            gsap.killTweensOf(avatar);
+
+            // Glow border
+            gsap.to(avatar, { borderColor: 'var(--accent)', duration: 0.3 });
+
+            // Hide base image, show particles container
+            gsap.set(baseImg, { autoAlpha: 0 });
+            gsap.set(particlesContainer, { autoAlpha: 1 });
+
+            // Ensure particles are clean before scattering
+            gsap.set(particles, {
+              x: 0,
+              y: 0,
+              rotationZ: 0,
+              scale: 1,
+              autoAlpha: 1,
+            });
+
+            // Scatter particles like dust (up and right like blowing wind)
+            gsap.to(particles, {
+              x: () => gsap.utils.random(20, 100),
+              y: () => gsap.utils.random(-80, 20),
+              rotationZ: () => gsap.utils.random(-90, 90),
+              scale: () => gsap.utils.random(0, 0.5),
+              autoAlpha: 0,
+              duration: 0.8,
+              ease: 'power2.out',
+              stagger: {
+                amount: 0.4,
+                from: 'start', // Start dissolving from top-left to bottom-right
+                grid: [15, 15],
+              },
+            });
+          });
+
+          avatar.addEventListener('mouseleave', () => {
+            gsap.killTweensOf(particles);
+            gsap.killTweensOf(avatar);
+
+            // Revert border
+            gsap.to(avatar, { borderColor: 'var(--border)', duration: 0.3 });
+
+            // Assemble particles back
+            gsap.to(particles, {
+              x: 0,
+              y: 0,
+              rotationZ: 0,
+              scale: 1,
+              autoAlpha: 1,
+              duration: 0.5,
+              ease: 'power2.inOut',
+              stagger: {
+                amount: 0.3,
+                from: 'random', // Reassemble randomly
+              },
+              onComplete: () => {
+                gsap.set(baseImg, { autoAlpha: 1 });
+                gsap.set(particlesContainer, { autoAlpha: 0 });
+              },
+            });
+          });
+        }
+      }
+    );
+  });
+</script>

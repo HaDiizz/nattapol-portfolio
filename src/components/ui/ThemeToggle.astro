@@ -1,42 +1,50 @@
 ---
 import { Sun, Moon } from 'lucide-astro';
 ---
+
 <button
-  id="theme-toggle"
   aria-label="Toggle theme"
-  class="w-9 h-9 rounded-lg flex items-center justify-center border border-[var(--border)] hover:bg-[var(--tag-bg)] transition-colors theme-btn relative overflow-hidden"
+  class="theme-toggle w-9 h-9 rounded-lg flex items-center justify-center border border-[var(--border)] hover:bg-[var(--tag-bg)] transition-colors theme-btn relative overflow-hidden"
 >
-  <Sun class="w-4 h-4 text-[var(--text)] absolute transition-transform duration-300 dark-icon" />
-  <Moon class="w-4 h-4 text-[var(--text)] absolute transition-transform duration-300 light-icon" />
+  <Sun
+    class="w-4 h-4 text-[var(--text)] absolute transition-transform duration-300 dark-icon"
+  />
+  <Moon
+    class="w-4 h-4 text-[var(--text)] absolute transition-transform duration-300 light-icon"
+  />
 </button>
 
 <style>
-  :global([data-theme="dark"]) .light-icon {
+  :global([data-theme='dark']) .light-icon {
     transform: translateY(20px) scale(0.5);
     opacity: 0;
   }
-  :global([data-theme="dark"]) .dark-icon {
+  :global([data-theme='dark']) .dark-icon {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
-  
-  :global([data-theme="light"]) .dark-icon {
+
+  :global([data-theme='light']) .dark-icon {
     transform: translateY(-20px) scale(0.5);
     opacity: 0;
   }
-  :global([data-theme="light"]) .light-icon {
+  :global([data-theme='light']) .light-icon {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
 </style>
 
 <script>
-  const btn = document.getElementById('theme-toggle');
-  btn?.addEventListener('click', () => {
-    const html = document.documentElement;
-    const current = html.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+  document.addEventListener('astro:page-load', () => {
+    const btns = document.querySelectorAll('.theme-toggle');
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const html = document.documentElement;
+        const current = html.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    });
   });
 </script>

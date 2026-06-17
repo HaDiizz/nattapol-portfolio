@@ -16,79 +16,92 @@ const { items } = Astro.props;
     </div>
 
     <div class="md:col-span-7 lg:col-span-8 relative">
-      <div class="timeline-line absolute left-0 top-2 bottom-0 w-[1px] bg-[var(--border)]"></div>
+      <div
+        class="timeline-line absolute left-0 top-2 bottom-0 w-[1px] bg-[var(--border)]"
+      >
+      </div>
 
       <div class="flex flex-col gap-12 pl-8">
-        {items.map((job) => (
-          <div class="timeline-item relative">
-            <div class="absolute -left-[37px] top-1.5 w-2 h-2 rounded-full bg-[var(--accent)] outline outline-4 outline-[var(--bg)]"></div>
-            
-            <div class="flex flex-wrap items-center gap-3 mb-2">
-              <h3 class="text-lg font-bold">{job.company}</h3>
-              <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--tag-bg)] text-[var(--tag-text)] capitalize">
-                {job.type}
-              </span>
-            </div>
-            
-            <div class="text-[var(--text-muted)] font-medium mb-4 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-              <span>{job.role}</span>
-              <span class="hidden sm:inline">&middot;</span>
-              <span class="text-sm">{job.period}</span>
-            </div>
+        {
+          items.map((job) => (
+            <div class="timeline-item relative">
+              <div class="timeline-dot absolute -left-[37px] top-1.5 w-3 h-3 rounded-full bg-[var(--accent)] outline outline-4 outline-[var(--bg)] opacity-0 scale-0" />
 
-            <p class="text-[var(--text)] mb-6 leading-relaxed">
-              {job.description}
-            </p>
-
-            <details class="group">
-              <summary class="cursor-pointer text-sm font-medium text-[var(--accent)] hover:underline flex items-center gap-1 mb-4 select-none">
-                <span class="group-open:hidden">View Projects ▸</span>
-                <span class="hidden group-open:inline">Hide Projects ▾</span>
-              </summary>
-              
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 pb-4">
-                {job.projects.map(project => (
-                  <div class="flex flex-col p-4 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] hover:border-[var(--accent)] transition-colors">
-                    <div class="flex items-start justify-between gap-2 mb-2">
-                      <h4 class="font-semibold">{project.name}</h4>
-                      {'url' in project && project.url && (
-                        <a href={project.url} target="_blank" rel="noopener noreferrer" class="text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors shrink-0" aria-label={`Visit ${project.name}`}>
-                          <ExternalLink class="w-4 h-4" />
-                        </a>
-                      )}
-                    </div>
-                    <p class="text-sm text-[var(--text-muted)] mb-4 line-clamp-3" title={project.desc}>{project.desc}</p>
-                    <div class="flex flex-wrap gap-2 mt-auto">
-                      {project.tags.slice(0, 3).map(tag => (
-                        <span class="text-[10px] px-2 py-1 rounded bg-[var(--tag-bg)] text-[var(--tag-text)]">{tag}</span>
-                      ))}
-                      {project.tags.length > 3 && (
-                        <div class="relative group/tooltip flex items-center">
-                          <span class="text-[10px] px-2 py-1 rounded bg-[var(--tag-bg)] text-[var(--tag-text)] cursor-help">+{project.tags.length - 3}</span>
-                          <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-20 pointer-events-none">
-                            <div class="bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] text-xs rounded-md px-2.5 py-1.5 shadow-xl whitespace-nowrap">
-                              {project.tags.slice(3).join(', ')}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
+              <div class="flex flex-wrap items-center gap-3 mb-2">
+                <h3 class="text-lg font-bold">{job.company}</h3>
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--tag-bg)] text-[var(--tag-text)] capitalize">
+                  {job.type}
+                </span>
               </div>
-            </details>
-          </div>
-        ))}
+
+              <div class="text-[var(--text-muted)] font-medium mb-4 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                <span>{job.role}</span>
+                <span class="hidden sm:inline">&middot;</span>
+                <span class="text-sm">{job.period}</span>
+              </div>
+
+              <p class="text-[var(--text)] mb-6 leading-relaxed">
+                {job.description}
+              </p>
+
+              <div class="experience-projects">
+                <button class="project-toggle cursor-pointer text-sm font-medium text-[var(--accent)] hover:underline flex items-center gap-1 mb-4 select-none">
+                  <span class="show-text">View Projects ▸</span>
+                  <span class="hide-text hidden">Hide Projects ▾</span>
+                </button>
+
+                <div class="projects-content overflow-hidden h-0 opacity-0">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-4">
+                    {job.projects.map((project) => (
+                      <div class="flex flex-col p-4 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] hover:border-[var(--accent)] transition-colors">
+                        <div class="flex items-start justify-between gap-2 mb-2">
+                          <h4 class="font-semibold">{project.name}</h4>
+                          {'url' in project && project.url && (
+                            <a
+                              href={project.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors shrink-0"
+                              aria-label={`Visit ${project.name}`}
+                            >
+                              <ExternalLink class="w-4 h-4" />
+                            </a>
+                          )}
+                        </div>
+                        <p
+                          class="text-sm text-[var(--text-muted)] mb-4 line-clamp-3"
+                          title={project.desc}
+                        >
+                          {project.desc}
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                          {project.tags.slice(0, 3).map((tag) => (
+                            <span class="text-[10px] px-2 py-1 rounded bg-[var(--tag-bg)] text-[var(--tag-text)]">
+                              {tag}
+                            </span>
+                          ))}
+                          {project.tags.length > 3 && (
+                            <div class="relative group/tooltip flex items-center">
+                              <span class="text-[10px] px-2 py-1 rounded bg-[var(--tag-bg)] text-[var(--tag-text)] cursor-help">
+                                +{project.tags.length - 3}
+                              </span>
+                              <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-20 pointer-events-none">
+                                <div class="bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] text-xs rounded-md px-2.5 py-1.5 shadow-xl whitespace-nowrap">
+                                  {project.tags.slice(3).join(', ')}
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
 </section>
-
-<style>
-  details > summary {
-    list-style: none;
-  }
-  details > summary::-webkit-details-marker {
-    display: none;
-  }
-</style>

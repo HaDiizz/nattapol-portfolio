@@ -1,0 +1,49 @@
+---
+import { ArrowUp, Play, Pause } from 'lucide-astro';
+---
+
+<div
+  class="fixed bottom-6 right-6 flex flex-col gap-3 z-50"
+  id="scroll-actions-widget"
+>
+  <button
+    id="scroll-speed-btn"
+    class="w-12 h-12 rounded-full bg-[var(--surface)] border border-[var(--border)] text-[var(--text)] flex items-center justify-center shadow-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all font-bold text-sm"
+    aria-label="Adjust scroll speed"
+    title="Speed: 1x"
+  >
+    1x
+  </button>
+
+  <button
+    id="auto-scroll-btn"
+    class="w-12 h-12 rounded-full bg-[var(--surface)] border border-[var(--border)] text-[var(--text)] flex items-center justify-center shadow-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all group"
+    aria-label="Auto scroll down"
+    title="Auto Scroll"
+  >
+    <Play
+      class="w-5 h-5 play-icon group-hover:scale-110 transition-transform"
+    />
+    <Pause
+      class="w-5 h-5 pause-icon hidden group-hover:scale-110 transition-transform"
+    />
+  </button>
+
+  <button
+    id="scroll-top-btn"
+    class="w-12 h-12 rounded-full bg-[var(--surface)] border border-[var(--border)] text-[var(--text)] flex items-center justify-center shadow-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all group opacity-0 pointer-events-none translate-y-4"
+    aria-label="Scroll to top"
+    title="Scroll to Top"
+  >
+    <ArrowUp class="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+  </button>
+</div>
+
+<style is:global>
+  /* Show the scroll top button only when we scroll past a certain point */
+  #scroll-top-btn.is-visible {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+</style>

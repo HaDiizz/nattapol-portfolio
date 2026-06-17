@@ -1,0 +1,265 @@
+---
+import { Timer } from 'lucide-astro';
+---
+
+<section
+  id="uptime"
+  class="py-32 border-t border-[var(--border)] overflow-hidden"
+>
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="flex items-center gap-3 mb-16 uptime-header">
+      <div class="p-3 rounded-xl bg-[var(--accent)]/10 text-[var(--accent)]">
+        <Timer class="w-6 h-6" />
+      </div>
+      <h2 class="section-heading text-3xl font-bold">System Uptime</h2>
+    </div>
+
+    <div
+      class="bg-[var(--bg-surface)] border border-[var(--border)] rounded-3xl p-8 md:p-16 shadow-sm uptime-container relative overflow-hidden"
+    >
+      <!-- Glow effect -->
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-xl bg-[var(--accent)]/5 blur-[120px] rounded-full pointer-events-none"
+      >
+      </div>
+
+      <div
+        class="relative grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 md:gap-4 lg:gap-5 text-center font-mono"
+      >
+        <!-- Years -->
+        <div
+          class="flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/30 rounded-2xl border border-[var(--border)]/50"
+        >
+          <span
+            id="uptime-years"
+            class="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] tracking-tighter tabular-nums dark:[text-shadow:0_0_15px_rgba(255,255,255,0.3)]"
+            >00</span
+          >
+          <span
+            class="text-[10px] md:text-xs uppercase tracking-widest text-[var(--text-muted)] mt-2 md:mt-4 font-sans font-medium"
+            >Years</span
+          >
+        </div>
+
+        <!-- Months -->
+        <div
+          class="flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/30 rounded-2xl border border-[var(--border)]/50"
+        >
+          <span
+            id="uptime-months"
+            class="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] tracking-tighter tabular-nums dark:[text-shadow:0_0_15px_rgba(255,255,255,0.3)]"
+            >00</span
+          >
+          <span
+            class="text-[10px] md:text-xs uppercase tracking-widest text-[var(--text-muted)] mt-2 md:mt-4 font-sans font-medium"
+            >Months</span
+          >
+        </div>
+
+        <!-- Days -->
+        <div
+          class="flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/30 rounded-2xl border border-[var(--border)]/50"
+        >
+          <span
+            id="uptime-days"
+            class="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] tracking-tighter tabular-nums dark:[text-shadow:0_0_15px_rgba(255,255,255,0.3)]"
+            >00</span
+          >
+          <span
+            class="text-[10px] md:text-xs uppercase tracking-widest text-[var(--text-muted)] mt-2 md:mt-4 font-sans font-medium"
+            >Days</span
+          >
+        </div>
+
+        <!-- Hours -->
+        <div
+          class="flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/30 rounded-2xl border border-[var(--border)]/50"
+        >
+          <span
+            id="uptime-hours"
+            class="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] tracking-tighter tabular-nums dark:[text-shadow:0_0_15px_rgba(255,255,255,0.3)]"
+            >00</span
+          >
+          <span
+            class="text-[10px] md:text-xs uppercase tracking-widest text-[var(--text-muted)] mt-2 md:mt-4 font-sans font-medium"
+            >Hours</span
+          >
+        </div>
+
+        <!-- Minutes -->
+        <div
+          class="flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/30 rounded-2xl border border-[var(--border)]/50"
+        >
+          <span
+            id="uptime-minutes"
+            class="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] tracking-tighter tabular-nums dark:[text-shadow:0_0_15px_rgba(255,255,255,0.3)]"
+            >00</span
+          >
+          <span
+            class="text-[10px] md:text-xs uppercase tracking-widest text-[var(--text-muted)] mt-2 md:mt-4 font-sans font-medium"
+            >Minutes</span
+          >
+        </div>
+
+        <!-- Seconds -->
+        <div
+          class="flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/30 rounded-2xl border border-[var(--border)]/50"
+        >
+          <span
+            id="uptime-seconds"
+            class="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] tracking-tighter tabular-nums dark:[text-shadow:0_0_15px_rgba(255,255,255,0.3)]"
+            >00</span
+          >
+          <span
+            class="text-[10px] md:text-xs uppercase tracking-widest text-[var(--text-muted)] mt-2 md:mt-4 font-sans font-medium"
+            >Seconds</span
+          >
+        </div>
+
+        <!-- Milliseconds -->
+        <div
+          class="flex flex-col items-center justify-center py-6 px-4 md:py-8 bg-[var(--tag-bg)]/10 rounded-2xl border border-[var(--accent)]/30 text-[var(--accent)] col-span-2 md:col-span-4 lg:col-span-2 shadow-[0_0_15px_rgba(26,107,255,0.1)] dark:shadow-[0_0_20px_rgba(77,143,255,0.15)] relative overflow-hidden"
+        >
+          <!-- Subtle inner pulse -->
+          <div
+            class="absolute inset-0 bg-[var(--accent)]/5 animate-pulse rounded-2xl"
+          >
+          </div>
+          <span
+            id="uptime-milliseconds"
+            class="relative text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter tabular-nums text-[var(--accent)] z-10 dark:[text-shadow:0_0_15px_rgba(77,143,255,0.6)]"
+            >000</span
+          >
+          <span
+            class="relative text-[10px] md:text-xs uppercase tracking-widest text-[var(--accent)] mt-2 md:mt-4 font-sans font-medium opacity-80 z-10"
+            >Ms</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('astro:page-load', () => {
+    // 1. Entrance Animation using GSAP ScrollTrigger
+    const header = document.querySelector('.uptime-header');
+    const container = document.querySelector('.uptime-container');
+    const digits = document.querySelectorAll(
+      '.uptime-container span[id^="uptime-"]'
+    );
+
+    // Prevent global animations.ts from killing this trigger by delaying initialization slightly
+    setTimeout(() => {
+      if (header && container) {
+        // Set initial state
+        gsap.set([header, container, digits], { opacity: 0 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '#uptime',
+            start: 'top 85%', // Trigger when top of section hits 85% of viewport
+          },
+        });
+
+        tl.fromTo(
+          header,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
+        )
+          .fromTo(
+            container,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
+            '-=0.6'
+          )
+          .fromTo(
+            digits,
+            { y: 20, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.5,
+              stagger: 0.05,
+              ease: 'back.out(1.5)',
+            },
+            '-=0.4'
+          );
+      }
+    }, 150);
+
+    // 2. Real-time Counter Logic
+    const birthDate = new Date('2001-06-29T04:00:00+07:00');
+
+    let reqId: number;
+
+    function updateUptime() {
+      // Dynamic lookup to ensure we stop the loop if the component unmounts
+      const elYears = document.getElementById('uptime-years');
+      if (!elYears) return;
+
+      const elMonths = document.getElementById('uptime-months');
+      const elDays = document.getElementById('uptime-days');
+      const elHours = document.getElementById('uptime-hours');
+      const elMinutes = document.getElementById('uptime-minutes');
+      const elSeconds = document.getElementById('uptime-seconds');
+      const elMs = document.getElementById('uptime-milliseconds');
+
+      const now = new Date();
+
+      let years = now.getFullYear() - birthDate.getFullYear();
+      let months = now.getMonth() - birthDate.getMonth();
+      let days = now.getDate() - birthDate.getDate();
+      let hours = now.getHours() - birthDate.getHours();
+      let minutes = now.getMinutes() - birthDate.getMinutes();
+      let seconds = now.getSeconds() - birthDate.getSeconds();
+      let milliseconds = now.getMilliseconds() - birthDate.getMilliseconds();
+
+      if (milliseconds < 0) {
+        milliseconds += 1000;
+        seconds--;
+      }
+      if (seconds < 0) {
+        seconds += 60;
+        minutes--;
+      }
+      if (minutes < 0) {
+        minutes += 60;
+        hours--;
+      }
+      if (hours < 0) {
+        hours += 24;
+        days--;
+      }
+      if (days < 0) {
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+        months--;
+      }
+      if (months < 0) {
+        months += 12;
+        years--;
+      }
+
+      // Batch DOM writes
+      elYears.innerText = years.toString().padStart(2, '0');
+      if (elMonths) elMonths.innerText = months.toString().padStart(2, '0');
+      if (elDays) elDays.innerText = days.toString().padStart(2, '0');
+      if (elHours) elHours.innerText = hours.toString().padStart(2, '0');
+      if (elMinutes) elMinutes.innerText = minutes.toString().padStart(2, '0');
+      if (elSeconds) elSeconds.innerText = seconds.toString().padStart(2, '0');
+      if (elMs) elMs.innerText = milliseconds.toString().padStart(3, '0');
+
+      reqId = requestAnimationFrame(updateUptime);
+    }
+
+    if (document.getElementById('uptime-years')) {
+      updateUptime();
+    }
+  });
+</script>

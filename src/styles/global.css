@@ -1,38 +1,40 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
-@import "@fontsource/geist/400.css";
-@import "@fontsource/geist/700.css";
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/500.css";
+@import '@fontsource/geist/400.css';
+@import '@fontsource/geist/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
 
 @layer base {
   :root {
     /* Light theme */
-    --bg:          #F8F8F6;
-    --bg-surface:  #FFFFFF;
-    --border:      #E5E5E3;
-    --text:        #111110;
-    --text-muted:  #6F6E6A;
-    --accent:      #1A6BFF;       /* electric blue — tech credibility */
-    --accent-dim:  #EBF1FF;
-    --tag-bg:      #F0F0EE;
-    --tag-text:    #444442;
+    --bg: #f8f8f6;
+    --bg-surface: #ffffff;
+    --border: #e5e5e3;
+    --text: #111110;
+    --text-muted: #6f6e6a;
+    --accent: #1a6bff; /* electric blue — tech credibility */
+    --accent-dim: #ebf1ff;
+    --tag-bg: #f0f0ee;
+    --tag-text: #444442;
   }
 
-  [data-theme="dark"] {
-    --bg:          #0E0E0D;
-    --bg-surface:  #161615;
-    --border:      #2A2A28;
-    --text:        #EDEDE8;
-    --text-muted:  #888884;
-    --accent:      #4D8FFF;
-    --accent-dim:  #0F1E3D;
-    --tag-bg:      #1E1E1C;
-    --tag-text:    #BEBEBA;
+  [data-theme='dark'] {
+    --bg: #0e0e0d;
+    --bg-surface: #161615;
+    --border: #2a2a28;
+    --text: #edede8;
+    --text-muted: #888884;
+    --accent: #4d8fff;
+    --accent-dim: #0f1e3d;
+    --tag-bg: #1e1e1c;
+    --tag-text: #bebeba;
   }
 
   * {
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
   }
 
   html {
@@ -42,7 +44,9 @@
     scroll-behavior: smooth;
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     font-family: 'Geist', system-ui, sans-serif;
   }
 
