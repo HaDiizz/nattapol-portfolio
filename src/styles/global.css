@@ -31,10 +31,22 @@
     --tag-text: #bebeba;
   }
 
-  * {
-    transition:
-      background-color 0.2s ease,
-      border-color 0.2s ease;
+  .will-change-transform,
+  .hero-avatar,
+  .hero-name,
+  .hero-role,
+  .hero-meta,
+  .hero-btns,
+  .hero-stats,
+  .nav-header,
+  .section-heading,
+  .section-content,
+  .timeline-line,
+  .timeline-item,
+  .timeline-dot,
+  .skill-tag,
+  .contact-item {
+    will-change: transform, opacity;
   }
 
   html {

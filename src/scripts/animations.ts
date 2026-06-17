@@ -320,46 +320,60 @@ function initScrollActions() {
   window.addEventListener('touchstart', stopAutoScroll, { passive: true });
 }
 
+let globalCtx: gsap.Context | null = null;
+
 document.addEventListener('astro:page-load', () => {
-  ScrollTrigger.getAll().forEach((t) => t.kill());
-  initAnimations();
-  initScrollActions();
+  // Revert any existing context to ensure a clean slate
+  if (globalCtx) {
+    globalCtx.revert();
+  }
 
-  // Experience Projects Toggle
-  document.querySelectorAll('.project-toggle').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const content = btn.nextElementSibling as HTMLElement;
-      const showText = btn.querySelector('.show-text');
-      const hideText = btn.querySelector('.hide-text');
+  globalCtx = gsap.context(() => {
+    initAnimations();
+    initScrollActions();
 
-      if (!content) return;
+    // Experience Projects Toggle
+    document.querySelectorAll('.project-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling as HTMLElement;
+        const showText = btn.querySelector('.show-text');
+        const hideText = btn.querySelector('.hide-text');
 
-      const isOpen = content.classList.contains('is-open');
+        if (!content) return;
 
-      if (isOpen) {
-        gsap.to(content, {
-          height: 0,
-          autoAlpha: 0,
-          duration: 0.4,
-          ease: 'power2.inOut',
-        });
-        content.classList.remove('is-open');
-        showText?.classList.remove('hidden');
-        hideText?.classList.add('hidden');
-      } else {
-        gsap.to(content, {
-          height: 'auto',
-          autoAlpha: 1,
-          duration: 0.5,
-          ease: 'power3.out',
-          onComplete: () => ScrollTrigger.refresh(),
-        });
-        content.classList.add('is-open');
-        showText?.classList.add('hidden');
-        hideText?.classList.remove('hidden');
-      }
+        const isOpen = content.classList.contains('is-open');
+
+        if (isOpen) {
+          gsap.to(content, {
+            height: 0,
+            autoAlpha: 0,
+            duration: 0.4,
+            ease: 'power2.inOut',
+          });
+          content.classList.remove('is-open');
+          showText?.classList.remove('hidden');
+          hideText?.classList.add('hidden');
+        } else {
+          gsap.to(content, {
+            height: 'auto',
+            autoAlpha: 1,
+            duration: 0.5,
+            ease: 'power3.out',
+            onComplete: () => ScrollTrigger.refresh(),
+          });
+          content.classList.add('is-open');
+          showText?.classList.add('hidden');
+          hideText?.classList.remove('hidden');
+        }
+      });
     });
   });
+});
+
+document.addEventListener('astro:before-preparation', () => {
+  if (globalCtx) {
+    globalCtx.revert();
+  }
 });
 
 window.addEventListener('load', () => {

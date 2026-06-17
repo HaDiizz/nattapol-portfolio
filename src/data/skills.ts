@@ -4,6 +4,7 @@ export const skills = {
     'JavaScript',
     'Python',
     'Go',
+    'Swift/SwiftUI',
     'HTML',
     'CSS',
     'C',
@@ -20,7 +21,7 @@ export const skills = {
     'FastAPI',
     'Angular',
   ],
-  Databases: ['PostgreSQL', 'MySQL', 'MongoDB'],
+  Databases: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis'],
   'Cloud & DevOps': [
     'Docker',
     'GitLab CI/CD',
@@ -29,7 +30,9 @@ export const skills = {
     'Cloudflare',
     'Vercel',
     'Render',
+    'Sentry',
   ],
   Testing: ['Jest', 'Playwright', 'Robot Framework'],
-  Tools: ['Figma', 'Power BI', 'GraphQL', 'gRPC'],
+  'API & Protocols': ['GraphQL', 'gRPC'],
+  Tools: ['Figma', 'Power BI'],
 } as const;

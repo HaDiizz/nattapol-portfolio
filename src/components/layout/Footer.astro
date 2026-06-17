@@ -1,9 +1,23 @@
 ---
-const year = new Date().getFullYear();
+const now = new Date();
+const year = now.getFullYear();
+const buildDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  timeZone: 'Asia/Bangkok',
+}).format(now);
 ---
 
-<footer class="py-8 mt-20 border-t border-[var(--border)] text-center">
+<footer
+  class="py-8 mt-20 border-t border-[var(--border)] text-center flex flex-col gap-2"
+>
   <p class="text-sm text-[var(--text-muted)]">
     Nattapol Singhad &middot; {year} &nbsp;&middot;&nbsp; Built with Astro
+  </p>
+  <p class="text-xs text-[var(--text-muted)] opacity-60">
+    Last updated: {buildDate}
   </p>
 </footer>
