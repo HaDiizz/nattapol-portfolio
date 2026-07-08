@@ -4,11 +4,35 @@ import isearchLightImg from '../assets/projects/isearch-light.png';
 import isearchDarkImg from '../assets/projects/isearch-dark.png';
 import portlyLightImg from '../assets/projects/portly-light.png';
 import portlyDarkImg from '../assets/projects/portly-dark.png';
-
 import woopifyLightImg from '../assets/projects/woopify-light.png';
 import woopifyDarkImg from '../assets/projects/woopify-dark.png';
+import mewraLightImg from '../assets/projects/mewra-light.png';
+import mewraDarkImg from '../assets/projects/mewra-dark.png';
 
 export const sideProjects = [
+  {
+    id: 'mewra',
+    name: 'Mewra',
+    tagline: 'AI-Powered Productivity & App Usage Tracker',
+    description:
+      'A comprehensive productivity and app usage tracking system with customizable goals, daily task lists summarized by AI insights, overtime (OT) recording, and interactive iOS/macOS widgets for quick glance metrics.',
+    url: null,
+    github: null,
+    tags: [
+      'iOS',
+      'SwiftUI',
+      'WidgetKit',
+      'Device Activity API',
+      'Core Data',
+      'OpenAI API',
+      'Swift',
+    ],
+    status: 'live',
+    image: {
+      light: mewraLightImg,
+      dark: mewraDarkImg,
+    },
+  },
   {
     id: 'next-devtoolkit',
     name: 'Next Dev Toolkit',
