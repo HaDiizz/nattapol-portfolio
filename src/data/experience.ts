@@ -5,7 +5,7 @@ export const experience = [
     shortName: 'INET',
     role: 'Software Engineer',
     period: 'Jun 2024 – Present',
-    type: 'fulltime',
+    type: 'full-time',
     description:
       'Contributing to government and healthcare identity platforms at scale — covering API management, digital signatures, OAuth 2.0/OIDC, and multi-service verification systems.',
     projects: [
@@ -54,6 +54,11 @@ export const experience = [
         desc: 'Designed and developed a centralized identity verification and onboarding platform for services integrated with the ONE ID ecosystem. Built user onboarding and account linking mechanisms for users without existing ONE ID accounts. Integrated with User Management (UM) systems to provision and synchronize user information.',
         tags: ['Angular', 'ONE ID', 'Identity Federation', 'User Management'],
       },
+      {
+        name: 'Education Admin Portal Platform',
+        desc: 'Designed and structured the Education Admin Portal for managing organizations, personnel, news, services, and workspaces within the Education Super App ecosystem. Designed and implemented Role-Based Access Control (RBAC) with roles and permissions to manage user access and control feature availability across the system. Conducted comprehensive unit testing using Vitest to ensure code quality and reliability.',
+        tags: ['Vue', 'Vite', 'Vitest', 'RBAC', 'Education Platform'],
+      },
     ],
   },
   {
@@ -82,6 +87,30 @@ export const experience = [
           'Stripe',
         ],
         url: 'https://tongatravel.app/en',
+      },
+    ],
+  },
+  {
+    id: 'go-digit',
+    company: 'Go Digit Company Limited',
+    shortName: 'Go Digit',
+    role: 'Software Engineer (Freelance)',
+    period: 'Apr 26, 2025 – Apr 28, 2025',
+    type: 'freelance',
+    description:
+      'Designed and developed a Proof of Concept (POC) system for collecting and displaying e-commerce product data from Shopee and Lazada.',
+    projects: [
+      {
+        name: 'ETDA E-Commerce Product Data Scraping POC',
+        desc: 'Designed and developed a Proof of Concept (POC) system for collecting and displaying e-commerce product data from Shopee and Lazada. Built a full-stack web application using Next.js, React, TypeScript, Node.js and Express.js. Implemented web scraping and API-based data extraction workflows to retrieve product listings, category hierarchies and product discovery data from e-commerce platforms. Developed RESTful APIs to coordinate scraping processes, process collected data and deliver structured results to the frontend. Implemented data processing and transformation logic to normalize raw product data into structured formats for presentation and further analysis. Designed the system architecture with separate frontend, backend API and scraping service layers to improve maintainability and support future expansion to additional e-commerce platforms.',
+        tags: [
+          'Next.js',
+          'React',
+          'TypeScript',
+          'Node.js',
+          'Express.js',
+          'Web Scraping',
+        ],
       },
     ],
   },

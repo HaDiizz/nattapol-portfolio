@@ -16,7 +16,7 @@ export const sideProjects = [
     tagline: 'AI-Powered Productivity & App Usage Tracker',
     description:
       'A comprehensive productivity and app usage tracking system with customizable goals, daily task lists summarized by AI insights, overtime (OT) recording, and interactive iOS/macOS widgets for quick glance metrics.',
-    url: null,
+    url: 'https://mewra.app',
     github: null,
     tags: [
       'iOS',
