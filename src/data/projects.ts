@@ -80,7 +80,7 @@ export const sideProjects = [
     description:
       'A Retrieval-Augmented Generation (RAG) search platform with team collaboration, user profiles, and document management. Built with vector embeddings and LLM integration.',
     url: null,
-    github: null,
+    github: 'https://github.com/HaDiizz/isearch-platform',
     tags: [
       'Next.js',
       'Tailwind CSS',
