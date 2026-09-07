@@ -8,6 +8,8 @@ import woopifyLightImg from '../assets/projects/woopify-light.png';
 import woopifyDarkImg from '../assets/projects/woopify-dark.png';
 import mewraLightImg from '../assets/projects/mewra-light.png';
 import mewraDarkImg from '../assets/projects/mewra-dark.png';
+import moondiLightImg from '../assets/projects/moondi-light.png';
+import moondiDarkImg from '../assets/projects/moondi-dark.png';
 
 export const sideProjects = [
   {
@@ -31,6 +33,31 @@ export const sideProjects = [
     image: {
       light: mewraLightImg,
       dark: mewraDarkImg,
+    },
+  },
+  {
+    id: 'moondi',
+    name: 'Moondi',
+    tagline: 'Self-Hosted Bitkub Crypto Portfolio Dashboard',
+    description:
+      'A quiet, self-hosted, read-only crypto portfolio dashboard for Bitkub accounts. Keeps exchange credentials secure within your Cloudflare account, featuring automated balance snapshots, THB portfolio valuation, activity ledger, and PWA push notifications.',
+    url: 'https://moondi.mewra.app',
+    github: 'https://github.com/mewra-lab/moondi',
+    tags: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'Hono',
+      'Cloudflare Workers',
+      'Cloudflare D1',
+      'Cloudflare KV',
+      'PWA',
+      'Bitkub API',
+    ],
+    status: 'live',
+    image: {
+      light: moondiLightImg,
+      dark: moondiDarkImg,
     },
   },
   {

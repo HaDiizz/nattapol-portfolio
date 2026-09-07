@@ -16,21 +16,21 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/sitemap": "^3.7.4",
     "@fontsource/geist": "latest",
     "@fontsource/inter": "latest",
-    "@lucide/astro": "^1.23.0",
-    "astro": "^7.0.6",
+    "@lucide/astro": "^1.42.0",
+    "astro": "^7.3.1",
     "gsap": "latest"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.3.1",
-    "eslint": "^10.5.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "eslint": "^10.10.0",
     "eslint-plugin-astro": "^1.7.0",
-    "prettier": "^3.8.4",
+    "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
-    "tailwindcss": "^4.3.1",
+    "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.61.1"
+    "typescript-eslint": "^8.69.0"
   }
 }
