@@ -1,0 +1,4 @@
+{
+  "mewraDependencyGuard.scannerMode": "docker",
+  "mewraDependencyGuard.securityScanScope": "workspace"
+}
